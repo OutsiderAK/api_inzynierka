@@ -3,11 +3,18 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createGlobalStyle } from "styled-components";
-import { Colors } from "./assets/Theme";
+import BgImage from "./assets/images/Background.svg";
 
 const GlobalStyle = createGlobalStyle`
   body{
-    background-color:${Colors.Secondary}
+    background: url(${BgImage});
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: "Raleway", sans-serif;
   }
 
 *{
