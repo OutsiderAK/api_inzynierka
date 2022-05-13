@@ -12,9 +12,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
-    font-family: "Raleway", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
 *{

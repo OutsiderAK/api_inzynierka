@@ -48,13 +48,13 @@ export default function Header() {
       </LeftPart>
       <RightPart>
         <NavBar>
-          <NavItem href="/Login">Zaloguj się</NavItem>
+          <NavItem href="/login">Zaloguj się</NavItem>
           <Button>Zarejestruj się</Button>
         </NavBar>
       </RightPart>
     <Router>
        <Routes>
-          <Route exact path="/" element={Login} />
+          <Route exact path="/login" element={Login} />
        </Routes>
     </Router>
     </HeaderEl>

@@ -5,6 +5,7 @@ import Icon3 from "../../../images/icons/03.svg";
 import H2 from "../../styled/H2.styled";
 import S2 from "../../styled/S2.styled";
 import FeatureItem from "./FeatureItem";
+import { Colors, TextStyles, Shadows } from "../../../Theme";
 
 const Items = [
     {
@@ -36,6 +37,7 @@ const FeatureMEl = styled.article`
 
 const SubTitle = styled(S2)`
   text-align: center;
+  color: ${Colors.Brand.Text};
 `;
 
 const ItemContainer = styled.div`
