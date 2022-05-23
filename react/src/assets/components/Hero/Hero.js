@@ -6,6 +6,7 @@ import H3 from "../styled/H3.styled";
 import People from "../../images/hm1.svg";
 import Img from "../styled/Img.styled";
 import { Colors, TextStyles, Shadows } from "../../Theme";
+import { Link } from 'react-router-dom';
 
 const HeroEl = styled.article`
   padding: 0 6.4rem;
@@ -47,7 +48,9 @@ export default function Hero() {
           <span>
             <Title>Informacje o naszej apikacji</Title>
             <SubTitle>Opis naszej strony, słowo zachęty, bla-bla-bla,aajdhdhdj, ksdhkdjs jdshdb djkdbj mscbvsj</SubTitle>
-            <Button>Zarejestruj się</Button>
+            <Link to="register">
+							<Button>Zarejestruj się</Button>
+						</Link>
             </span>
             <Image src = {People} />
         </Content>

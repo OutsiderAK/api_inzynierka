@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Colors, TextStyles } from "../../Theme";
 import Button from "../styled/Button.styled";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Login from "../../Pages/Login";
+import { Link } from 'react-router-dom';
+
 
 const HeaderEl = styled.header`
   padding: 2rem 0;
@@ -36,6 +36,14 @@ const NavItem = styled.a`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-flow: wrap;
+	gap: 0.5rem;
+`;
+
 export default function Header() {
   return (
     <HeaderEl>
@@ -49,14 +57,13 @@ export default function Header() {
       <RightPart>
         <NavBar>
           <NavItem href="/login">Zaloguj się</NavItem>
-          <Button>Zarejestruj się</Button>
+          
+						<Link to="register">
+							<Button>Zarejestruj się</Button>
+						</Link>
+					
         </NavBar>
       </RightPart>
-    <Router>
-       <Routes>
-          <Route exact path="/login" element={Login} />
-       </Routes>
-    </Router>
     </HeaderEl>
 
     

@@ -4,9 +4,14 @@ import Input from "../components/Inputs/Input";
 import H3 from "../components/styled/H3.styled";
 import { Colors, TextStyles } from "../Theme";
 
+const FormSection = styled.div`
+	padding: 160px 0;
+`;
 
 const AppEl = styled.div`
   display: flex;
+  ustify-content: center;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 60vh;
@@ -46,6 +51,7 @@ const ButtonContainer = styled.div`
 
 function Form() {
   return (
+    <FormSection>
     <AppEl>
       <WelcomeText>Zaloguj się</WelcomeText>
       <InputContainer>
@@ -56,6 +62,7 @@ function Form() {
         <Button>Zaloguj się</Button>
       </ButtonContainer>
     </AppEl>
+    </FormSection>
   );
 }
 
