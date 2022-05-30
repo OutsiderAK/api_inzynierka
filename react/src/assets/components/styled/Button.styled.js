@@ -11,6 +11,7 @@ const Button = styled.button`
   cursor: pointer;
   background-color: ${Colors.Brand.Button};
   color: ${Colors.Brand.White};
+  ${TextStyles.Bundler(TextStyles.S1)}
   :hover {
     background-color: ${Colors.Brand.Blue};
     color: ${Colors.Brand.Text};

@@ -23,7 +23,7 @@ a{
 }
 
 a:visited{
-  color: #070710;
+  color: #010030;
 }
    
 `;

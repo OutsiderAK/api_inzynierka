@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Colors, TextStyles } from "../../Theme";
 import Button from "../styled/Button.styled";
 import { Link } from 'react-router-dom';
+import Navbar1 from "./DropdownMenu.js";
 
 
 const HeaderEl = styled.header`
@@ -36,6 +37,7 @@ const NavItem = styled.a`
   }
 `;
 
+
 export const ButtonWrapper = styled.div`
 	width: 100%;
 	display: flex;
@@ -44,6 +46,8 @@ export const ButtonWrapper = styled.div`
 	gap: 0.5rem;
 `;
 
+
+
 export default function Header() {
   return (
     <HeaderEl>
@@ -51,7 +55,7 @@ export default function Header() {
         <NavBar>
           <NavItem href="#">Edukacja</NavItem>
           <NavItem href="#">Kategorie</NavItem>
-          <NavItem href="#">Stwórz</NavItem>
+          <Navbar1 />
         </NavBar>
       </LeftPart>
       <RightPart>
@@ -65,7 +69,5 @@ export default function Header() {
         </NavBar>
       </RightPart>
     </HeaderEl>
-
-    
   );
 }
