@@ -6,10 +6,6 @@ from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
 
 
-class ReactSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = React
-        fields = ['name', 'detail']
 
 
 class UserSerializer(serializers.ModelSerializer):
