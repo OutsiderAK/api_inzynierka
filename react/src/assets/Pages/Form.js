@@ -1,3 +1,4 @@
+import React, { Component} from 'react';
 import styled from "styled-components";
 import Button from "../components/styled/Button.styled";
 import Input from "../components/Inputs/Input";
@@ -39,6 +40,7 @@ const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
+  text-color: ${Colors.Brand.Text};
 `;
 
 const ButtonContainer = styled.div`
@@ -49,21 +51,47 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-function Form() {
-  return (
-    <FormSection>
+class Form extends Component {
+
+  state = {
+    credentials: {username: '', password: ''}
+  }
+
+  login = event => {
+    fetch('http://127.0.0.1:8000/api/auth/login/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.state.credentials)
+    })
+    .then( data => data.json())
+    .then(
+      data => {
+        this.props.userLogin(data.token);
+      }
+    )
+    .catch( error => console.error(error))
+  }
+
+  render() {
+    return (
+      <FormSection>
     <AppEl>
       <WelcomeText>Zaloguj się</WelcomeText>
       <InputContainer>
-        <Input type="text" placeholder="Email" />
-        <Input type="password" placeholder="Hasło" />
+        <Input type="text" placeholder="Email" name="username" 
+           value={this.state.credentials.username}
+           onChange={this.inputChanged} />
+        <Input type="password" placeholder="Hasło" name="password"
+           value={this.state.credentials.password}
+           onChange={this.inputChanged} />
       </InputContainer>
       <ButtonContainer>
-        <Button>Zaloguj się</Button>
+        <Button onClick={this.login}>Zaloguj się</Button>
       </ButtonContainer>
     </AppEl>
     </FormSection>
-  );
+    );
+  }
 }
 
 export default Form;

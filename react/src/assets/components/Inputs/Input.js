@@ -16,7 +16,7 @@ const StyledInput = styled.input`
   padding: 1rem;
   border: none;
   outline: none;
-  color: ${Colors.Brand.White};
+  color: ${Colors.Brand.Text};
   font-size: 1rem;
   font-weight: bold;
   &:focus {
