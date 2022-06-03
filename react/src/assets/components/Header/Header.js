@@ -3,6 +3,7 @@ import { Colors, TextStyles } from "../../Theme";
 import Button from "../styled/Button.styled";
 import { Link } from 'react-router-dom';
 import Navbar1 from "./DropdownMenu.js";
+import Navbar2 from "./Dropdowncategory.js";
 
 
 const HeaderEl = styled.header`
@@ -54,14 +55,15 @@ export default function Header() {
       <LeftPart>
         <NavBar>
           <NavItem href="#">Edukacja</NavItem>
-          <NavItem href="#">Kategorie</NavItem>
+         
+          <Navbar2 />
           <Navbar1 />
+          
         </NavBar>
       </LeftPart>
       <RightPart>
         <NavBar>
           <NavItem href="/login">Zaloguj się</NavItem>
-          
 						<Link to="register">
 							<Button>Zarejestruj się</Button>
 						</Link>

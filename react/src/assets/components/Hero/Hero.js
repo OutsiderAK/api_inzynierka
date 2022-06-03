@@ -46,8 +46,9 @@ export default function Hero() {
         <Header />
         <Content>
           <span>
-            <Title>Informacje o naszej apikacji</Title>
-            <SubTitle>Opis naszej strony, słowo zachęty, bla-bla-bla,aajdhdhdj, ksdhkdjs jdshdb djkdbj mscbvsj</SubTitle>
+            <Title>Fiszki <br></br>dla  niemych</Title>
+            <SubTitle>Chcesz szybko i skutecznie nauczyć się języka migowego?<br></br>
+              Skorzystaj z naszych fiszek oraz twórz swoje własne. </SubTitle>
             <Link to="register">
 							<Button>Zarejestruj się</Button>
 						</Link>
