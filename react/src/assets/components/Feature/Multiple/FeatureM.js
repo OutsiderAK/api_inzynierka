@@ -12,19 +12,19 @@ const Items = [
       id: 1,
       icon: Icon1,
       title: "Ucz się",
-      text: "ucz się języka migowego za pomocą fiszek",
+      text: "jakiś tekst o sposobie  nauki języka migołego na naszej stronie",
     },
     {
       id: 2,
       icon: Icon2,
       title: "Ćwicz",
-      text: "ćwicz i utrwalaj poznane słówka rozwiązując quizy",
+      text: "jakiś tekst o sposobie  nauki języka migołego na naszej stronie",
     },
     {
       id: 3,
       icon: Icon3,
       title: "Wzrastaj",
-      text: "wzrastaj w wiedzę oraz konkuruj z innymi ",
+      text: "jakiś tekst o sposobie  nauki języka migołego na naszej stronie",
     },
 ];
 
@@ -51,9 +51,9 @@ const ItemContainer = styled.div`
 export default function FeatureM() {
   return (
     <FeatureMEl>
-      <H2>Zapoznaj się z naszą stroną i ...</H2>
+      <H2>Co my oferujemy</H2>
       <SubTitle>
-      
+      jakiś tekst o sposobie  nauki języka migołego na naszej stronie
       </SubTitle>
       <ItemContainer>
         {Items.map((item) => {

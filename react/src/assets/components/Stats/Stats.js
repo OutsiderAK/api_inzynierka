@@ -9,10 +9,10 @@ import S2 from "../styled/S2.styled";
 import { Colors, TextStyles, Shadows } from "../../Theme";
 
 const Items = [
-  { id: 1, icon: Icon, title: "Gotowe fiszki do nauki"},
-  { id: 2, icon: Icon, title: "Tworzenie własnych fiszek"},
-  { id: 3, icon: Icon, title: "Materiały edukacyjne"},
-  { id: 4, icon: Icon, title: "Motywujący ranking" },
+  { id: 1, icon: Icon, title: "Pierwsza zaleta"},
+  { id: 2, icon: Icon, title: "Druga zaleta"},
+  { id: 3, icon: Icon, title: "Trzecia zaleta"},
+  { id: 4, icon: Icon, title: "Czwarta zaleta" },
 ];
 
 const StatsEl = styled.article`
@@ -35,7 +35,7 @@ const Counts = styled.div`
 
 const Image = styled(Img)`
   filter: drop-shadow(${Shadows.button});
-  margin-left: 1rem;
+  margin-left: 6rem;
 `;
 
 const SubTitle = styled(S2)`
