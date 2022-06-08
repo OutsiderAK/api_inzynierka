@@ -1,3 +1,4 @@
+import React, { Component} from 'react';
 import styled from "styled-components";
 import Button from "../components/styled/Button.styled";
 import Input from "../components/Inputs/Input";
@@ -47,22 +48,65 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-function App() {
-  return (
-    <FormSection>
-    <AppEl>
-      <WelcomeText>Zarejestruj się</WelcomeText>
-      <InputContainer>
-        <Input type="text" placeholder="Imię" />
-        <Input type="text" placeholder="Email" />
-        <Input type="password" placeholder="Hasło" />
-      </InputContainer>
-      <ButtonContainer>
-        <Button>Zarejestruj się</Button>
-      </ButtonContainer>
-    </AppEl>
-    </FormSection>
-  );
+class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onLoginClick = () => {
+    const userData = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    console.log("Sign up " + userData.username + " " + userData.password);
+  };
+  
+
+  login = event => {
+    fetch('http://127.0.0.1:8000/api/auth/register/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.state.credentials)
+    })
+    .then( data => data.json())
+    .then(
+      data => {
+        this.props.userLogin(data.token);
+      }
+    )
+    .catch( error => console.error(error))
+  }
+
+  render(){
+
+  
+    return (
+      <FormSection>
+      <AppEl>
+        <WelcomeText>Zarejestruj się</WelcomeText>
+        <InputContainer>
+          <Input type="text" placeholder="Imię" />
+          <Input type="text" placeholder="Email" name="username" 
+           value={this.state.username}
+           onChange={this.onChange} />
+          <Input type="password" placeholder="Hasło" name="password"
+           value={this.state.password}
+           onChange={this.onChange} />
+        </InputContainer>
+        <ButtonContainer>
+        <Button onClick={this.onLoginClick}>Zarejestruj się</Button>
+        </ButtonContainer>
+      </AppEl>
+      </FormSection>
+    );
+  }
 }
 
-export default App;
+export default Register;

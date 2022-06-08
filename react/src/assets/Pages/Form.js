@@ -52,17 +52,33 @@ const ButtonContainer = styled.div`
 `;
 
 class Form extends Component {
-
-  state = {
-    credentials: {username: '', password: ''}
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
   }
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value});
+  };
+
+  onLoginClick = () => {
+    const userData = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    console.log("Login " + userData.username + " " + userData.password);
+  };
+  
 
   login = event => {
     fetch('http://127.0.0.1:8000/api/auth/login/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(this.state.credentials)
+      body: JSON.stringify(this.state.username, this.state.password)
     })
+
     .then( data => data.json())
     .then(
       data => {
@@ -70,6 +86,7 @@ class Form extends Component {
       }
     )
     .catch( error => console.error(error))
+  
   }
 
   render() {
@@ -79,14 +96,14 @@ class Form extends Component {
       <WelcomeText>Zaloguj się</WelcomeText>
       <InputContainer>
         <Input type="text" placeholder="Email" name="username" 
-           value={this.state.credentials.username}
-           onChange={this.inputChanged} />
+           value={this.state.username}
+           onChange={this.onChange} />
         <Input type="password" placeholder="Hasło" name="password"
-           value={this.state.credentials.password}
-           onChange={this.inputChanged} />
+           value={this.state.password}
+           onChange={this.onChange} />
       </InputContainer>
       <ButtonContainer>
-        <Button onClick={this.login}>Zaloguj się</Button>
+        <Button onClick={this.onLoginClick}>Zaloguj się</Button>
       </ButtonContainer>
     </AppEl>
     </FormSection>

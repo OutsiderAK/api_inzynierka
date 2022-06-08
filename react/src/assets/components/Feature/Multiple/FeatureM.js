@@ -12,19 +12,19 @@ const Items = [
       id: 1,
       icon: Icon1,
       title: "Ucz się",
-      text: "jakiś tekst o sposobie  nauki języka migołego na naszej stronie",
+      text: "ucz się języka migowego za pomocą fiszek",
     },
     {
       id: 2,
       icon: Icon2,
       title: "Ćwicz",
-      text: "jakiś tekst o sposobie  nauki języka migołego na naszej stronie",
+      text: "ćwicz i utrwalaj słówka rozwiązując quizy",
     },
     {
       id: 3,
       icon: Icon3,
       title: "Wzrastaj",
-      text: "jakiś tekst o sposobie  nauki języka migołego na naszej stronie",
+      text: "wzrastaj w wiedzę i konkuuruj z innymi",
     },
 ];
 
@@ -44,17 +44,14 @@ const ItemContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 5rem;
-  column-gap: 2rem;
+  column-gap: 6rem;
   row-gap: 3rem;
 `;
 
 export default function FeatureM() {
   return (
     <FeatureMEl>
-      <H2>Co my oferujemy</H2>
-      <SubTitle>
-      jakiś tekst o sposobie  nauki języka migołego na naszej stronie
-      </SubTitle>
+      <H2>Skorzystaj z naszej strony i ...</H2>
       <ItemContainer>
         {Items.map((item) => {
           return <FeatureItem key={item.id} item={item} />;

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
+import Giphy from "./Giphy";
 
 const CardContainer = styled.div`
   display: flex;
@@ -85,7 +86,9 @@ const CreateCard = () => {
             <h2>text</h2>
           </CardFront>
           <CardBack onClick = {() => setFlipped(false)}>
-            <h2>textBack</h2>
+            <h2>
+              <Giphy />
+            </h2>
           </CardBack>
         </CardInner>
       </CardContainer>
