@@ -103,7 +103,7 @@ class Form extends Component {
            onChange={this.onChange} />
       </InputContainer>
       <ButtonContainer>
-        <Button onClick={this.onLoginClick}>Zaloguj się</Button>
+        <Button onClick={this.login}>Zaloguj się</Button>
       </ButtonContainer>
     </AppEl>
     </FormSection>
