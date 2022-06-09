@@ -22,20 +22,20 @@ const StatsEl = styled.article`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4rem;
+  gap: 1rem;
 `;
 
 const Counts = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 2rem;
-  gap: 2rem;
+  gap: 1rem;
   flex: 1;
 `;
 
 const Image = styled(Img)`
   filter: drop-shadow(${Shadows.button});
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 `;
 
 const SubTitle = styled(S2)`

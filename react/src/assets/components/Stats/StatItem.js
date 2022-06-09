@@ -6,7 +6,7 @@ import Img from "../styled/Img.styled";
 const StatItemEl = styled.span`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   white-space: nowrap;
 `;
 

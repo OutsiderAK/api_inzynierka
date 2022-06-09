@@ -1,3 +1,4 @@
+import { Component } from "react";
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import Giphy from "./Giphy";
@@ -75,25 +76,22 @@ const CardInner = styled.div`
   }
 `;
 
-
-
-const CreateCard = () => {
-  const [flipped, setFlipped] = useState(false)
+const Card = (props) => {
+    const [flipped, setFlipped] = useState(false)
     return (
       <CardContainer>
         <CardInner className={flipped ? "flipped" : ""}>
           <CardFront onClick = {() => setFlipped(true)}>
-            <h2>weekend</h2>
+            <div>{props.word}</div>
           </CardFront>
           <CardBack onClick = {() => setFlipped(false)}>
             <div>
-              <Giphy />
+              {props.psl}
             </div>
           </CardBack>
         </CardInner>
       </CardContainer>
     );
-  }
+}
 
-  export default CreateCard;
-  
+export default Card;
