@@ -16,4 +16,4 @@ class UserSerializer(serializers.ModelSerializer):
 class FishkaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fishka
-        fields = ['id', 'text', 'reverse', 'meaning']
+        fields = ['id', 'text', 'reverse']
