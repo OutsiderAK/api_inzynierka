@@ -63,30 +63,21 @@ class Form extends Component {
     this.setState({ [e.target.name]: e.target.value});
   };
 
-  onLoginClick = () => {
-    const userData = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    console.log("Login " + userData.username + " " + userData.password);
-  };
-  
+
 
   login = event => {
-    fetch('http://127.0.0.1:8000/api/auth/login/', {
+    const results = fetch('http://127.0.0.1:8000/api/auth/login/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.username, this.state.password)
     })
 
-    .then( data => data.json())
-    .then(
-      data => {
-        this.props.userLogin(data.token);
-      }
-    )
-    .catch( error => console.error(error))
   
+    results.then(function(results) {
+      console.log(results)
+    })
+    
+
   }
 
   render() {
