@@ -53,6 +53,6 @@ class CustomUser(AbstractUser):
         return f"{self.email}"
 
 
-class React(models.Model):
-    name = models.CharField(max_length=30)
-    detail = models.CharField(max_length=500)
+class Fishka(models.Model):
+    text = models.CharField(max_length=128)
+    reverse = models.CharField(max_length=1024)
