@@ -6,6 +6,7 @@ import Register from "./assets/Pages/Register";
 import CreateCard from "./assets/Pages/CreateCard";
 import CreateCategory from "./assets/Pages/CreateCategory";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Education from "./assets/Pages/Education";
 
 
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/register" component={Register} />
 				<Route path="/createCard" component={CreateCard} />
 				<Route path="/createCategory" component={CreateCategory} />
+				<Route path="/education" component={Education} />
 			</Switch>
 		</Router>
   );
