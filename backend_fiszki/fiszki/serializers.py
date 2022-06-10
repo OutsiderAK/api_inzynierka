@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework import viewsets
+from django.contrib.auth.models import User
 from .models import *
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.settings import api_settings
@@ -16,4 +18,4 @@ class UserSerializer(serializers.ModelSerializer):
 class FishkaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fishka
-        fields = ['id', 'text', 'reverse', 'meaning']
+        fields = ['id', 'text', 'reverse']
