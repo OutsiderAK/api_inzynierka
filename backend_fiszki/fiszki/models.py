@@ -61,3 +61,4 @@ class React(models.Model):
 class Fishka(models.Model):
     text = models.CharField(max_length=128)
     reverse = models.CharField(max_length=1024)
+    meaning = models.CharField(max_length=128)
