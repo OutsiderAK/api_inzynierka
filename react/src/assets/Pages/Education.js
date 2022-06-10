@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import { List } from "../education/List"
 import { Card } from "../education/Card";
+import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.main`
   padding: 2rem 0;
@@ -18,6 +19,8 @@ export const Container = styled.div`
 function Education() {
 
   const [news, setNews] = useState([])
+
+  const { push } = useHistory();
 
   useEffect(() => {
     axios.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=599b3bac3de04a1f926badbb088d4d02")
@@ -41,6 +44,7 @@ function Education() {
               return (
                 <Card
               key={n.title}
+              onClick={() => push(`/article/${n.title}`)}
               {...countryInfo}
             />
              );

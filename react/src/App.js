@@ -7,6 +7,7 @@ import CreateCard from "./assets/Pages/CreateCard";
 import CreateCategory from "./assets/Pages/CreateCategory";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Education from "./assets/Pages/Education";
+import { Details } from "./assets/education/Details";
 
 
 
@@ -22,6 +23,7 @@ function App() {
 				<Route path="/createCard" component={CreateCard} />
 				<Route path="/createCategory" component={CreateCategory} />
 				<Route path="/education" component={Education} />
+				<Route path="/article/:title" component={Details} />
 			</Switch>
 		</Router>
   );
