@@ -1,16 +1,24 @@
-import React, { Component} from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import styled from "styled-components";
 import Button from "../components/styled/Button.styled";
 import Input from "../components/Inputs/Input";
 import H3 from "../components/styled/H3.styled";
 import { Colors, TextStyles } from "../Theme";
+import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import authSlice from "../store/Auth"; 
+import { useFormik } from "formik";
+
 
 const FormSection = styled.div`
-	padding: 160px 0;
+  padding: 8rem 30rem;
 `;
 
 const AppEl = styled.div`
   display: flex;
+  ustify-content: center;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 60vh;
@@ -26,7 +34,7 @@ const AppEl = styled.div`
 `;
 
 const WelcomeText = styled(H3)`
-  margin: 3rem 0 5rem 0;
+  margin: 4rem 0 4rem 0;
   color: ${Colors.Brand.Text};
 `;
 
@@ -38,75 +46,117 @@ const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
+  text-color: ${Colors.Brand.Text};
 `;
 
 const ButtonContainer = styled.div`
-  margin: 5.5rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+function Register(){
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory(); 
+  const dispatch = useDispatch();
+ 
+
+  const handleRegister = (username, email, password) => {
+    axios
+      .post(`http://127.0.0.1:8000/api/auth/register/`, {username, email, password })
+      .then((res) => {
+        dispatch(
+          authSlice.actions.setAuthTokens({
+            token: res.data.token,
+            refreshToken: res.data.refresh,
+          })
+        );
+      console.log(res.data)
+        dispatch(authSlice.actions.setRegister(res.data.user));
+        setLoading(false);
+        history.push("/profile");
+      })
+      .catch((err) => {
+        console.log(err.res)
+        
+      });
+  };
+  const formik = useFormik({
+    initialValues: {
       username: "",
-      password: ""
-    };
-  }
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onLoginClick = () => {
-    const userData = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    console.log("Sign up " + userData.username + " " + userData.password);
-  };
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      setLoading(true);
+      handleRegister(values.username,values.email, values.password);
+    },
+  });
   
-
-  login = event => {
-    fetch('http://127.0.0.1:8000/api/auth/register/', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(this.state.credentials)
-    })
-    .then( data => data.json())
-    .then(
-      data => {
-        this.props.userLogin(data.token);
-      }
-    )
-    .catch( error => console.error(error))
-  }
-
-  render(){
-
-  
-    return (
-      <FormSection>
+  return (
+    <FormSection>
       <AppEl>
         <WelcomeText>Zarejestruj się</WelcomeText>
-        <InputContainer>
-          <Input type="text" placeholder="Imię" />
-          <Input type="text" placeholder="Email" name="username" 
-           value={this.state.username}
-           onChange={this.onChange} />
-          <Input type="password" placeholder="Hasło" name="password"
-           value={this.state.password}
-           onChange={this.onChange} />
-        </InputContainer>
-        <ButtonContainer>
-        <Button onClick={this.onLoginClick}>Zarejestruj się</Button>
-        </ButtonContainer>
+        <form onSubmit={formik.handleSubmit}>
+          <InputContainer>
+          <input
+              type="username"
+              placeholder="Imię"
+              name="username"
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.errors.email ? 
+            <div>
+              {formik.errors.email} 
+              </div> : null}
+            <input
+              type="password"
+              placeholder="Hasło"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.errors.password ? (
+            <div>
+              {formik.errors.password} 
+            </div>
+            ) : null}
+          </InputContainer>
+          <div className="text-danger text-center my-2" hidden={false}>
+            {message}
+          </div>
+
+
+          <ButtonContainer>
+            <button
+              type="submit"
+              disabled={loading}
+              
+            >
+              Zarejestruj się
+            </button>
+          </ButtonContainer>
+          
+        </form>
       </AppEl>
-      </FormSection>
-    );
-  }
+  </FormSection>
+  );
 }
 
 export default Register;
+
+  

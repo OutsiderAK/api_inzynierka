@@ -1,12 +1,20 @@
-import React, { Component} from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import styled from "styled-components";
 import Button from "../components/styled/Button.styled";
 import Input from "../components/Inputs/Input";
 import H3 from "../components/styled/H3.styled";
 import { Colors, TextStyles } from "../Theme";
+import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import authSlice from "../store/Auth";
+import { useFormik } from "formik";
+
 
 const FormSection = styled.div`
-	padding: 160px 0;
+
+  padding: 8rem 30rem;
+
 `;
 
 const AppEl = styled.div`
@@ -51,55 +59,96 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: ""
-    };
-  }
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value});
+function Form(){
+
+  const [loading, setLoading] = useState(false);
+  const history = useHistory(); 
+  const dispatch = useDispatch();
+ 
+
+  const handleLogin = (email, password) => {
+    axios
+      .post(`http://127.0.0.1:8000/api/auth/login/`, { email, password })
+      .then((res) => {
+        dispatch(
+          authSlice.actions.setAuthTokens({
+            token: res.data.access,
+            refreshToken: res.data.refresh,
+          })
+        );
+      console.log(res.data)
+        dispatch(authSlice.actions.setAccount(res.data.user));
+        setLoading(false);
+        history.push("/profile");
+      })
+      .catch((err) => {
+        console.log(err.res)
+        
+      });
   };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      setLoading(true);
+      handleLogin(values.email, values.password);
+    },
+  });
 
-
-
-  login = event => {
-    const results = fetch('http://127.0.0.1:8000/api/auth/login/', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(this.state.username, this.state.password)
-    })
-
+  //const handleLogIn = () => {
+    //history.push("/home");
   
-    results.then(function(results) {
-      console.log(results)
-    })
-    
+  return (
+    <FormSection>
+      <AppEl>
+        <WelcomeText>Zaloguj się</WelcomeText>
+        <form onSubmit={formik.handleSubmit}>
+          <InputContainer>
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.errors.email ? 
+            <div>
+              {formik.errors.email} 
+              </div> : null}
+            <input
+              type="password"
+              placeholder="Hasło"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.errors.password ? (
+            <div>
+              {formik.errors.password} 
+            </div>
+            ) : null}
+          </InputContainer>
 
-  }
-
-  render() {
-    return (
-      <FormSection>
-    <AppEl>
-      <WelcomeText>Zaloguj się</WelcomeText>
-      <InputContainer>
-        <Input type="text" placeholder="Email" name="username" 
-           value={this.state.username}
-           onChange={this.onChange} />
-        <Input type="password" placeholder="Hasło" name="password"
-           value={this.state.password}
-           onChange={this.onChange} />
-      </InputContainer>
-      <ButtonContainer>
-        <Button onClick={this.login}>Zaloguj się</Button>
-      </ButtonContainer>
-    </AppEl>
-    </FormSection>
-    );
-  }
+          <ButtonContainer>
+            <button type="submit" disabled={loading}>
+              Zaloguj się
+            </button>
+          </ButtonContainer>
+          
+        </form>
+      </AppEl>
+  </FormSection>
+  );
 }
 
 export default Form;
+
+  
+
+
+
+ 

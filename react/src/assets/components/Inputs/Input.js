@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { Colors, TextStyles } from "../../Theme";
 import { Shadows } from "../../Theme";
-export default function Input({ type, placeholder }) {
-  return <StyledInput type={type} placeholder={placeholder} />;
+
+
+
+export default function Input() {
+  return <StyledInput />;
 }
 
 

@@ -1,0 +1,25 @@
+import React from "react";
+import { Redirect, Route, RouteProps } from "react-router";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../store";
+
+const ProtectedRoute = (props: RouteProps) => {
+  const auth = useSelector((state: RootState) => state.auth);
+
+  if (auth.account) {
+    if (props.path === "/login" || props.path === "/createCategory" ) {
+      return <Redirect to={"/login"} />;
+    }
+    return <Route {...props} />;
+  } 
+  else if (!auth.account) {
+    return <Redirect to={"/register"} />;
+  } 
+  else {
+    return <div>Not found</div>;
+  }
+  
+};
+
+export default ProtectedRoute;

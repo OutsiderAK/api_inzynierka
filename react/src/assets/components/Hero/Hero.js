@@ -12,7 +12,7 @@ const HeroEl = styled.article`
   padding: 0 6.4rem;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 89;
   background-repeat: no-repeat;
   background-size: cover;
   row-gap: 1.5rem;
