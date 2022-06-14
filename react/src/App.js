@@ -24,6 +24,7 @@ function App() {
   return (
 	<Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
+      <GlobalStyle />
         <Router>
             <Switch>
               <Route exact path="/" component={Home} />
