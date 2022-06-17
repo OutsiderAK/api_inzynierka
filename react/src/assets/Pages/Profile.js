@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
-
+import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 import styled from "styled-components";
 import { Colors, TextStyles } from "../Theme";
@@ -41,6 +41,10 @@ const Profile = () => {
     <div className="w-full h-screen">
 
       <h1> HEEELOOO</h1>
+      <Link to="/quiz">
+				<Button>Quiz</Button>
+			</Link>
+
       <ButtonContainer>
         
         <Button

@@ -9,6 +9,9 @@ import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import authSlice from "../store/Auth";
 import { useFormik } from "formik";
+import { Link } from 'react-router-dom';
+
+
 
 
 const FormSection = styled.div`
@@ -23,7 +26,7 @@ const AppEl = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 60vh;
+  height: 70vh;
   width: 30vw;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -34,12 +37,10 @@ const AppEl = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.4rem;
 `;
-
 const WelcomeText = styled(H3)`
   margin: 4rem 0 4rem 0;
   color: ${Colors.Brand.Text};
 `;
-
 const InputContainer = styled.div`
   row-gap: 1rem;
   display: flex;
@@ -164,8 +165,13 @@ function Form(){
               Zaloguj się
             </Button>
           </ButtonContainer>
-          
+         
         </form>
+        <div className='zarejestruj'>
+            <p>Nie posiadasz konta? <Link to="register">
+							  <button>Zarejestruj się</button>
+						  </Link></p>
+        </div>
       </AppEl>
   </FormSection>
   );

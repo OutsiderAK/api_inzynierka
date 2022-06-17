@@ -13,8 +13,8 @@ import Profile from "./assets/Pages/Profile";
 import store, { persistor } from "./assets/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
-
-
+import Quiz from "./assets/quiz/Quiz";
+import PrivateRoute from "./assets/routes/PrivateRoute";
 
 
 
@@ -30,9 +30,10 @@ function App() {
               <Route exact path="/" component={Home} />
 				      <Route path="/login" component={Login} />
 				      <ProtectedRoute exact path="/profile" component={Profile} />
+              <Route path="/quiz" component={Quiz} />
               <Route path="/register" component={Register} />
 				      <Route path="/createCard" component={CreateCard} />
-				      <ProtectedRoute path="/createCategory" component={CreateCategory} />
+				      <PrivateRoute path="/createCategory" component={CreateCategory} />
 				      <Route path="/education" component={Education} />
 				      <Route path="/article/:title" component={Details} />
             </Switch>

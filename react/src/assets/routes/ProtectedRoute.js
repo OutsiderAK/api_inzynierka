@@ -14,7 +14,7 @@ const ProtectedRoute = (props: RouteProps) => {
     return <Route {...props} />;
   } 
   else if (!auth.account) {
-    return <Redirect to={"/register"} />;
+    return <Redirect to={"/login"} />;
   } 
   else {
     return <div>Not found</div>;

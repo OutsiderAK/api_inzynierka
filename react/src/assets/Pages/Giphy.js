@@ -26,7 +26,8 @@ const Giphy = () => {
         const results = await axios("https://api.giphy.com/v1/gifs", {
           params: {
             api_key: "tAEFUgagRjRNkU24orQdFB8EHMcNTUSe",
-            ids: "l0MYxci0TrPAtdI4M"
+            ids: "26DOtLVBDesaOnTJm",
+
           }
         });
 
@@ -44,6 +45,7 @@ const Giphy = () => {
   }, []);
 
   const renderGifs = () => {
+
     if (isLoading) {
       return <Loader />;
     }
