@@ -15,6 +15,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import Quiz from "./assets/quiz/Quiz";
 import PrivateRoute from "./assets/routes/PrivateRoute";
+import { ProfileEx } from "./assets/Pages/ProfileEx";
 
 
 
@@ -36,6 +37,7 @@ function App() {
 				      <PrivateRoute path="/createCategory" component={CreateCategory} />
 				      <Route path="/education" component={Education} />
 				      <Route path="/article/:title" component={Details} />
+              <Route path="/profileEx" component={ProfileEx} />
             </Switch>
         </Router>
       </PersistGate>
