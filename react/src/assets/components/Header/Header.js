@@ -56,7 +56,7 @@ export default function Header() {
         <Link to="education">
           <NavItem>Edukacja</NavItem>
         </Link>
-        <Link to="profileEx">
+        <Link to="profile">
           <NavItem>Kategorie</NavItem>
         </Link>
           <Navbar1 />

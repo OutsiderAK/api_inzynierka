@@ -13,6 +13,8 @@ import H1 from '../styled/H1.styled';
 import H3 from '../styled/H3.styled';
 import Button from '../styled/Button.styled';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 
 const Heading = styled(H1)`
 	color: ${Colors.Brand.Text};
@@ -80,7 +82,8 @@ const Courses = () => {
 						<TextWrapper size="0.9rem" margin="0.7rem" color="#4f4f4f">
 							{el.description}
 						</TextWrapper>
-						<CoursesButton>Ucz się</CoursesButton>
+						
+						<Link to="/quiz"><CoursesButton>Ucz się</CoursesButton></Link>
 					</ImageWrapper>
 				))}
 			</ReviewSlider>

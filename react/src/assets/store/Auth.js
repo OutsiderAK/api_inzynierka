@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AccountResponse } from "../types/AccountTypes";
 import { RegisterResponse } from "../types/RegisterTypes";
-
+import { FiszkaResponse } from "../types/FiszkaResponse";
 
 const initialState = {
   token: null, 
@@ -26,6 +26,11 @@ const authSlice = createSlice({
     setRegister(state, action: RegisterResponse) {
       state.account = action.payload;
     },
+
+    setFiszka(state, action: FiszkaResponse) {
+      state.account = action.payload;
+    },
+
     logout:(state) => {
       state.account = null;
       state.refreshToken = null;
