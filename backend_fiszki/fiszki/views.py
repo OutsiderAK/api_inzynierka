@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from .models import Fishka
 from rest_framework import status
 from .serializers import FishkaSerializer
-
+from rest_framework import generics
 
 from rest_framework import viewsets, filters
 
@@ -24,3 +24,12 @@ class FishkaApi(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SingleFishkaApi(generics.ListAPIView):
+    serializer_class = FishkaSerializer
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        return Fishka.objects.filter(id=id)
+
