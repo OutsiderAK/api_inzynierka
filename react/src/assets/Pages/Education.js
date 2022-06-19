@@ -4,6 +4,7 @@ import axios from "axios";
 import { List } from "../education/List"
 import { Card } from "../education/Card";
 import { useHistory } from 'react-router-dom';
+import Hero1 from "../components/Hero/Hero1";
 
 const Wrapper = styled.main`
   padding: 2rem 0;
@@ -31,6 +32,7 @@ function Education() {
   }, []);
   return (
     <>
+    <Hero1 />
     <Wrapper>
       <Container>
 

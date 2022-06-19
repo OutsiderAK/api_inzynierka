@@ -16,7 +16,8 @@ import Quiz from "./assets/quiz/Quiz";
 import PrivateRoute from "./assets/routes/PrivateRoute";
 import { Profile} from "./assets/Pages/Profile";
 import Fiszki from "./assets/Pages/Fiszki";
-
+import { Fiszka } from "./assets/components/fiszki/Fiszka";
+import {NotFound} from "./assets/Pages/NotFound";
 
 
 
@@ -26,21 +27,21 @@ function App() {
   return (
 	<Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-      <GlobalStyle />
         <Router>
+          <GlobalStyle />
             <Switch>
               <Route exact path="/" component={Home} />
 				      <Route path="/login" component={Login} />
-				     
               <Route path="/quiz" component={Quiz} />
               <Route path="/register" component={Register} />
               <Route path="/fiszki" component={Fiszki} />
 				      <Route path="/createCard" component={CreateCard} />
 				      <PrivateRoute path="/createCategory" component={CreateCategory} />
 				      <Route path="/education" component={Education} />
-              <Route path="/profile" component={Profile} />
+              <PrivateRoute path="/profile" component={Profile} />
 				      <Route path="/article/:title" component={Details} />
-              
+              <Route path="/fiszki/:id" component={Fiszka} />
+              <Route component={NotFound} />
             </Switch>
         </Router>
       </PersistGate>

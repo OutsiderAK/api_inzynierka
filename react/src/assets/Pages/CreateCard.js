@@ -1,6 +1,17 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import Giphy from "./Giphy";
+import Hero1 from "../components/Hero/Hero1";
+
+const Wrapper = styled.div`
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+`
 
 const CardContainer = styled.div`
   display: flex;
@@ -35,9 +46,9 @@ const CardFront = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 140px 0;
+  margin: 70px 0;
   height: 400px;
-  width: 260px;
+  width: 240px;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(18px);
@@ -52,9 +63,9 @@ const CardBack = styled.div`
   z-index:1;
   align-items: center;
   justify-content: center;
-  margin: 140px 0;
+  margin: 70px 0;
   height: 400px;
-  width: 260px;
+  width: 240px;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(18px);
@@ -80,6 +91,9 @@ const CardInner = styled.div`
 const CreateCard = () => {
   const [flipped, setFlipped] = useState(false)
     return (
+      <>
+        <Hero1 />
+      <Wrapper>
       <CardContainer>
         <CardInner className={flipped ? "flipped" : ""}>
           <CardFront onClick = {() => setFlipped(true)}>
@@ -92,6 +106,8 @@ const CreateCard = () => {
           </CardBack>
         </CardInner>
       </CardContainer>
+      </Wrapper>
+      </>
     );
   }
 

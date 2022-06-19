@@ -19,6 +19,15 @@ const FormSection = styled.div`
   padding: 8rem 30rem;
 
 `;
+const Wrapper = styled.div`
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+`
 
 const AppEl = styled.div`
   display: flex;
@@ -128,6 +137,7 @@ function Form(){
     //history.push("/home");
   
   return (
+    <Wrapper>
     <FormSection>
       <AppEl>
         <WelcomeText>Zaloguj się</WelcomeText>
@@ -174,6 +184,7 @@ function Form(){
         </div>
       </AppEl>
   </FormSection>
+  </Wrapper>
   );
 }
 

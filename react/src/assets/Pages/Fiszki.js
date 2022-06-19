@@ -1,56 +1,65 @@
-
-
+import { FiszkiCard } from '../education/FiszkiCard';
+import styled from "styled-components";
+import { List } from '../education/List';
 import React from 'react';
 import axios from 'axios';
-import Giphy from "./Giphy";
+import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Hero1 from '../components/Hero/Hero1';
 
+const Wrapper = styled.main`
+  padding: 2rem 0;
+`;
 
-class Fiszki extends React.Component {
-    constructor(props) {
-        super(props);
+export const Container = styled.div`
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
 
-        this.state = {
+function Fiszki() {
+    
 
-            fiszki:[]
-        }
-    }
+  const [fiszki, setFiszki] = useState([])
 
-    componentDidMount(){
-        axios.get('http://127.0.0.1:8000/api/fiszki/')
-            .then(response => {
-                console.log(response)
-                this.setState({fiszki: response.data})
-            })
-            .catch(error  => {
-                console.log(error)
-            })
+  const { push } = useHistory();
 
-
-
-    }
-    render() {
-        const {fiszki} = this.state
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/fiszki/')
+      .then((response) => {
+        console.log(response);
+        setFiszki(response.data)
+      })
+    }, []);
         return(
-
-
-
-            <div>
-                lalal:
-                {
-                    fiszki.length ?
-                    fiszki.map(fiszki => <div key={fiszki.id}>{fiszki.id} {fiszki.text} {fiszki.reverse}</div>) :
-                    null
-
-
-                }
-                
-            </div>
-
-
-
+            <>
+            <Hero1 />
+            <Wrapper>
+              <Container>
+        
+              <List>
+                  {
+                    fiszki.map((n) => {
+                      const countryInfo = {
+                      img: n.reverse,
+                      text: n.text,
+                      };
+                      return (
+                        <FiszkiCard
+                      key={n.id}
+                      onClick={() => push(`/fiszki/${n.id}`)}
+                      {...countryInfo}
+                    />
+                     );
+                })}
+              </List>
+              </Container>
+              </Wrapper>
+              </>
 
         );
     }
-}
 
-    export default Fiszki;
+
+export default Fiszki;

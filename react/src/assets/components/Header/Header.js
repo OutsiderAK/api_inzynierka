@@ -53,10 +53,10 @@ export default function Header() {
     <HeaderEl>
       <LeftPart>
         <NavBar>
-        <Link to="education">
+        <Link to="createcategory">
           <NavItem>Edukacja</NavItem>
         </Link>
-        <Link to="profile">
+        <Link to="createcategory">
           <NavItem>Kategorie</NavItem>
         </Link>
           <Navbar1 />

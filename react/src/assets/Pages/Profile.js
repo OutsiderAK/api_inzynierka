@@ -12,6 +12,7 @@ import {
 	ContentColumn,
 } from '../components/Profile/FeaturesStyles.js';
 import Ranking from '../images/ranking.png';
+import Hero1 from '../components/Hero/Hero1';
 
 import Courses from '../components/Profile/Courses.js';
 import {useDispatch, useSelector} from "react-redux";
@@ -60,17 +61,18 @@ export const Profile = () => {
 
   	const handleLogout = () => {
     	dispatch(authSlice.actions.logout());
-    	history.push("/login");
+    	history.push("/home");
   };
 	return (
 		<>
+		<Hero1 />
 		<Section>
 				<ContentRow>
 					<ContentColumn>
 						<TextWrapper>
 						<ButtonContainer>
         
-        					<Button onClick={handleLogout} className="rounded p-2 w-32 bg-red-700 text-white">Wyloguj się</Button>
+        					<Button onClick={handleLogout} >Wyloguj się</Button>
 
       					</ButtonContainer>
 							<TopLine>

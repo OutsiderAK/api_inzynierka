@@ -12,7 +12,7 @@ import { useFormik } from "formik";
 
 
 const FormSection = styled.div`
-  padding: 8rem 30rem;
+  padding: 4rem 30rem;
 `;
 
 const AppEl = styled.div`
