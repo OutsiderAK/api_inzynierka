@@ -3,7 +3,7 @@ import { useState } from "react";
 import Giphy from "./Giphy";
 import Hero1 from "../components/Hero/Hero1";
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     box-sizing: border-box;
 `
 
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   transition: z-index 1s, transform 1s;
@@ -26,7 +26,7 @@ const CardContainer = styled.div`
     z-index: 1;
   }
 `
-const CardSide = css`
+export const CardSide = css`
   width: 100%;
   min-width: 100%;
   display: flex;
@@ -40,7 +40,7 @@ const CardSide = css`
   box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
 `;
 
-const CardFront = styled.div`
+export const CardFront = styled.div`
   ${CardSide};
   z-index: 0;
   display: flex;
@@ -57,7 +57,7 @@ const CardFront = styled.div`
   display: flex;
 `;
 
-const CardBack = styled.div`
+export const CardBack = styled.div`
   ${CardSide}
   transform: rotateY(180deg) translate(100%, 0);
   z-index:1;
@@ -74,7 +74,7 @@ const CardBack = styled.div`
   display: flex;
 `;
 
-const CardInner = styled.div`
+export const CardInner = styled.div`
   flex: 1;
   display: flex;
   transition: transform 1s;
@@ -111,5 +111,5 @@ const CreateCard = () => {
     );
   }
 
-  export default CreateCard;
+export default CreateCard;
   

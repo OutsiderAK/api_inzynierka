@@ -40,7 +40,7 @@ export const Details =() => {
     const [fiszka, setFiszka] = useState(null);
 
     useEffect(() => {
-      axios.get('http://127.0.0.1:8000/api/fiszki/')
+      axios.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=599b3bac3de04a1f926badbb088d4d02")
         .then((response) => {
           console.log(response);
           setFiszka(response.data)

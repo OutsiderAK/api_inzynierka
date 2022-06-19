@@ -18,6 +18,7 @@ import { Profile} from "./assets/Pages/Profile";
 import Fiszki from "./assets/Pages/Fiszki";
 import { Fiszka } from "./assets/components/fiszki/Fiszka";
 import {NotFound} from "./assets/Pages/NotFound";
+import Home1 from "./assets/Pages/Home1";
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <GlobalStyle />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home1} />
 				      <Route path="/login" component={Login} />
               <Route path="/quiz" component={Quiz} />
               <Route path="/register" component={Register} />
@@ -38,9 +40,9 @@ function App() {
 				      <Route path="/createCard" component={CreateCard} />
 				      <PrivateRoute path="/createCategory" component={CreateCategory} />
 				      <Route path="/education" component={Education} />
-              <PrivateRoute path="/profile" component={Profile} />
+              <Route path="/profile" component={Profile} />
 				      <Route path="/article/:title" component={Details} />
-              <Route path="/fiszki/:id" component={Fiszka} />
+              <Route path="/card/:id" component={Fiszka} />
               <Route component={NotFound} />
             </Switch>
         </Router>

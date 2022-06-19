@@ -37,14 +37,18 @@ const NavItem = styled.a`
   }
 `;
 
-
-export const ButtonWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	flex-flow: wrap;
-	gap: 0.5rem;
+export const Logo = styled.a`
+  display: flex;
+  grid-column:6 / span 1;
+  letter-spacing: -0.12rem;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  color: ${Colors.Brand.Text};
 `;
+
+
 
 
 
@@ -62,6 +66,9 @@ export default function Header() {
           <Navbar1 />
         </NavBar>
       </LeftPart>
+      <Link to="/">
+          <Logo>FJM</Logo>
+      </Link>
       <RightPart>
         <NavBar>
           <NavItem href="/login">Zaloguj się</NavItem>

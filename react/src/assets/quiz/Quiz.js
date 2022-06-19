@@ -9,11 +9,12 @@ import H3 from "../components/styled/H3.styled";
 import { Colors, TextStyles } from "../Theme";
 import { Link } from 'react-router-dom';
 import "./anw.css";
-
+import Hero1 from '../components/Hero/Hero1';
+import { Wrapper } from '../Pages/CreateCard';
 
 const FormSection = styled.div`
 
-  padding: 1rem 0rem;
+  padding: 0rem 0rem;
 
 `;
 
@@ -24,7 +25,6 @@ const Title = styled(H1)`
 
 
 `;
-
 
 
 const SubTitle = styled(H3)`
@@ -133,7 +133,9 @@ class Quiz extends React.Component {
         let { nr, total, question, answers, correct, showButton, questionAnswered, displayPopup, score} = this.state;
 
         return (
-            
+            <>
+            <Hero1 />
+            <Wrapper>
             <div className="container">
             <FormSection>
                 <AppEl>
@@ -166,7 +168,8 @@ class Quiz extends React.Component {
                 </AppEl>
             </FormSection>
         </div>
-            
+        </Wrapper>
+        </>    
         );
     }
 };

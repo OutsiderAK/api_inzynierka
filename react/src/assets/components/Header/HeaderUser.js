@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Navbar1 from "./DropdownMenu1.js";
 import AvatarIcon from "../../images/AvatarIcon.png";
 import NavbarUser from "./DropdownMenuUser.js";
+import { Logo } from "./Header";
 
 
 const HeaderEl = styled.header`
@@ -38,15 +39,6 @@ const NavItem = styled.a`
   }
 `;
 
-
-export const ButtonWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	flex-flow: wrap;
-	gap: 0.5rem;
-`;
-
 const AvatartImage = styled.img`
   cursor: pointer;
   border-radius: 100px;
@@ -61,13 +53,16 @@ export default function HeaderUser() {
         <Link to="education">
           <NavItem>Edukacja</NavItem>
         </Link>
-        <Link to="">
+        <Link >
           <NavItem>Kategorie</NavItem>
         </Link>
           <Navbar1 />
         </NavBar>
       </LeftPart>
       <RightPart>
+        <Link to="/home">
+          <Logo>FJM</Logo>
+        </Link>
         <NavBar>
           <NavbarUser />		
         </NavBar>

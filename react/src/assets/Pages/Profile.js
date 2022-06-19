@@ -61,7 +61,7 @@ export const Profile = () => {
 
   	const handleLogout = () => {
     	dispatch(authSlice.actions.logout());
-    	history.push("/home");
+    	history.push("/login");
   };
 	return (
 		<>
@@ -72,7 +72,7 @@ export const Profile = () => {
 						<TextWrapper>
 						<ButtonContainer>
         
-        					<Button onClick={handleLogout} >Wyloguj się</Button>
+						<Button onClick={handleLogout} className="rounded p-2 w-32 bg-red-700 text-white">Wyloguj się</Button>
 
       					</ButtonContainer>
 							<TopLine>

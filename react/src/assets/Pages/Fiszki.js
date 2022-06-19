@@ -48,7 +48,7 @@ function Fiszki() {
                       return (
                         <FiszkiCard
                       key={n.id}
-                      onClick={() => push(`/fiszki/${n.id}`)}
+                      onClick={() => push(`/kate/${n.id}`)}
                       {...countryInfo}
                     />
                      );
