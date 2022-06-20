@@ -1,0 +1,2 @@
+DELETE
+FROM fiszki_fishka
