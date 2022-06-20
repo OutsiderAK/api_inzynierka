@@ -5,21 +5,21 @@ import { Colors } from "../Theme";
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Hero1 from "../components/Hero/Hero1";
+import { HomeEl } from "../Pages/Home1";
 
 const HeroEl = styled.article`
   padding: 0 6.4rem;
   display: flex;
+
   flex-direction: column;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  row-gap: 1.5rem;
 `;
 
 const Content = styled.section`
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
 `;
 
 
@@ -35,28 +35,30 @@ const SubTitle = styled(S1)`
   color: ${Colors.Brand.Text};
 `;
 
+const searchByArticle = (slug) => 'http://127.0.0.1:8000/api/article/' + slug + "/";
+
 export const Details =() => {
-    const { text } = useParams();
-    const [fiszka, setFiszka] = useState(null);
+    const { slug } = useParams();
+    const [article, setArticle] = useState([]);
 
     useEffect(() => {
-      axios.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=599b3bac3de04a1f926badbb088d4d02")
-        .then((response) => {
-          console.log(response);
-          setFiszka(response.data)
-        })
-      }, [text]);
-    console.log(setFiszka)
+      axios.get(searchByArticle(slug)).then(({ data }) => setArticle(data[0]));
+    }, [slug]);
+    console.log(article);
     return (
-        <HeroEl>
-        <Content>
-          <span>
-            <Title>{text}</Title>
-            <SubTitle>
-            {fiszka}
-            </SubTitle>
-            </span> 
-        </Content>
-      </HeroEl>
+      <HomeEl>
+          <Hero1 />
+          <HeroEl>
+            <Content>
+            <span>
+            <img src={article.img} alt={article.title} width="450px" />
+              <Title>{article.title}</Title>
+              <SubTitle>{article.author}
+              </SubTitle>
+            </span>
+            </Content>
+            <Content>{article.section}</Content>
+          </HeroEl>
+        </HomeEl>
     );
 };

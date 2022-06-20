@@ -24,10 +24,10 @@ function Education() {
   const { push } = useHistory();
 
   useEffect(() => {
-    axios.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=599b3bac3de04a1f926badbb088d4d02")
+    axios.get("http://127.0.0.1:8000/api/article/")
       .then((response) => {
         console.log(response);
-        setNews(response.data.articles)
+        setNews(response.data)
       })
   }, []);
   return (
@@ -40,13 +40,13 @@ function Education() {
           {
             news.map((n) => {
               const countryInfo = {
-              img: n.urlToImage,
+              img: n.img,
               title: n.title,
               };
               return (
                 <Card
-              key={n.title}
-              onClick={() => push(`/article/${n.title}`)}
+              key={n.slug}
+              onClick={() => push(`/article/${n.slug}`)}
               {...countryInfo}
             />
              );

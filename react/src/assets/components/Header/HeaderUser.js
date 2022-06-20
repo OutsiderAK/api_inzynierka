@@ -57,7 +57,7 @@ export default function HeaderUser() {
 
   const handleLogout = () => {
     dispatch(authSlice.actions.logout());
-    history.push("/login");
+    history.push("/");
   };
 
   return (

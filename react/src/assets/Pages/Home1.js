@@ -6,7 +6,7 @@ import Stats from "../components/Stats/Stats";
 import { Title, SubTitle, Content, HeroEl } from "../components/Hero/Hero";
 import Home from "../images/home.png"
 
-const HomeEl = styled.div`
+export const HomeEl = styled.div`
 display: flex;
 background-repeat: no-repeat;
 background-size: cover;

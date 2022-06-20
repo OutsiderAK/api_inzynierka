@@ -41,7 +41,7 @@ function App() {
 				      <PrivateRoute path="/createCategory" component={CreateCategory} />
 				      <Route path="/education" component={Education} />
               <Route path="/profile" component={Profile} />
-				      <Route path="/article/:title" component={Details} />
+				      <Route path="/article/:slug" component={Details} />
               <Route path="/card/:id" component={Fiszka} />
               <Route component={NotFound} />
             </Switch>

@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import Hero1 from '../Hero/Hero1';
 import {Wrapper, CardContainer, CardInner, CardFront, CardBack } from '../../Pages/CreateCard';
 
-const searchByCountry = (id) => 'http://127.0.0.1:8000/api/fiszki/' + id;
+const searchByCard = (id) => 'http://127.0.0.1:8000/api/fiszki/' + id;
 
 export const Fiszka = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ export const Fiszka = () => {
   console.log(fiszka);
 
   useEffect(() => {
-    axios.get(searchByCountry(id)).then(({ data }) => setFiszka(data[0]));
+    axios.get(searchByCard(id)).then(({ data }) => setFiszka(data[0]));
   }, [id]);
 
   return (
