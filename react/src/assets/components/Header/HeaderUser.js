@@ -5,6 +5,11 @@ import Navbar1 from "./DropdownMenu1.js";
 import AvatarIcon from "../../images/AvatarIcon.png";
 import NavbarUser from "./DropdownMenuUser.js";
 import { Logo } from "./Header";
+import {useDispatch, useSelector} from "react-redux";
+import authSlice from "../../store/Auth";
+import {useHistory} from "react-router";
+import Button from "../styled/Button.styled";
+
 
 
 const HeaderEl = styled.header`
@@ -46,6 +51,15 @@ const AvatartImage = styled.img`
   `;
 
 export default function HeaderUser() {
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    dispatch(authSlice.actions.logout());
+    history.push("/login");
+  };
+
   return (
     <HeaderEl>
       <LeftPart>
@@ -65,6 +79,7 @@ export default function HeaderUser() {
         </Link>
         <NavBar>
           <NavbarUser />		
+          <Button onClick={handleLogout}>Wyloguj się</Button>	
         </NavBar>
       </RightPart>
     </HeaderEl>

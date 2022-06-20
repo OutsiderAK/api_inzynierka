@@ -8,8 +8,8 @@ const ProtectedRoute = (props: RouteProps) => {
   const auth = useSelector((state: RootState) => state.auth);
 
   if (auth.account) {
-    if (props.path === "/login" || props.path === "/createCategory" ) {
-      return <Redirect to={"/login"} />;
+    if (props.path === "/login" ) {
+      return <Redirect to={"/profile"} />;
     }
     return <Route {...props} />;
   } 

@@ -115,7 +115,7 @@ function Form(){
       console.log(res.data)
         dispatch(authSlice.actions.setAccount(res.data.user));
         setLoading(false);
-        history.push("/home");
+        history.push("/profile");
       })
       .catch((err) => {
         console.log(err.res)

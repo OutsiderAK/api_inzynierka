@@ -57,12 +57,7 @@ export const Profile = () => {
 
   	const userId = account?.id;
 
-  	const user = useSWR<UserResponse>(`/user/${userId}/`,axios)
-
-  	const handleLogout = () => {
-    	dispatch(authSlice.actions.logout());
-    	history.push("/login");
-  };
+  	
 	return (
 		<>
 		<Hero1 />
@@ -70,11 +65,6 @@ export const Profile = () => {
 				<ContentRow>
 					<ContentColumn>
 						<TextWrapper>
-						<ButtonContainer>
-        
-						<Button onClick={handleLogout} className="rounded p-2 w-32 bg-red-700 text-white">Wyloguj się</Button>
-
-      					</ButtonContainer>
 							<TopLine>
 							Moje punkty
 							</TopLine>
