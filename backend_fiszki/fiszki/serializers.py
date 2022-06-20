@@ -17,3 +17,10 @@ class FishkaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fishka
         fields = ['id', 'text', 'reverse']
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ['title', 'img', 'section', 'author', 'slug']
+        read_only_field = ['slug']

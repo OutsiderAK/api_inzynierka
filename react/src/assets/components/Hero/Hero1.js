@@ -1,12 +1,9 @@
 import styled from "styled-components";
 import HeaderUser from "../Header/HeaderUser";
-import Button from "../styled/Button.styled";
 import H1 from "../styled/H1.styled";
 import H3 from "../styled/H3.styled";
-import People from "../../images/hm1.svg";
 import Img from "../styled/Img.styled";
 import { Colors, TextStyles, Shadows } from "../../Theme";
-import { Link } from 'react-router-dom';
 
 const HeroEl = styled.article`
   padding: 0 6.4rem;

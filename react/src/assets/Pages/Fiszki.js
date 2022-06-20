@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Hero1 from '../components/Hero/Hero1';
+import Button from '../components/styled/Button.styled';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.main`
   padding: 2rem 0;
@@ -48,14 +50,16 @@ function Fiszki() {
                       return (
                         <FiszkiCard
                       key={n.id}
-                      onClick={() => push(`/kate/${n.id}`)}
+                      onClick={() => push(`/card/${n.id}`)}
                       {...countryInfo}
                     />
                      );
                 })}
               </List>
+              <Button onClick={() => push(`/quiz`)}>Sprawdz siebie</Button>
               </Container>
               </Wrapper>
+              
               </>
 
         );

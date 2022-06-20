@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -56,3 +56,15 @@ class CustomUser(AbstractUser):
 class Fishka(models.Model):
     text = models.CharField(max_length=128)
     reverse = models.CharField(max_length=1024)
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=256)
+    img = models.CharField(max_length=1024)
+    section = models.CharField(max_length=256)
+    author = models.CharField(max_length=256)
+    slug = models.SlugField(default='/')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Article, self).save(*args, **kwargs)

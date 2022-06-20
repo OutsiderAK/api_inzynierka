@@ -8,7 +8,7 @@ import Img from "../styled/Img.styled";
 import { Colors, TextStyles, Shadows } from "../../Theme";
 import { Link } from 'react-router-dom';
 
-const HeroEl = styled.article`
+export const HeroEl = styled.article`
   padding: 0 6.4rem;
   display: flex;
   flex-direction: column;
@@ -18,19 +18,19 @@ const HeroEl = styled.article`
   row-gap: 1.5rem;
 `;
 
-const Content = styled.section`
+export const Content = styled.section`
   display: flex;
   justify-content: space-between;
   gap: 2rem;
 `;
 
-const Title = styled(H1)`
+export const Title = styled(H1)`
   width: 476 px;
   margin-top: 1rem;
   padding-top: 3rem;
   color: ${Colors.Brand.Text};
 `;
-const SubTitle = styled(H3)`
+export const SubTitle = styled(H3)`
   margin-top: 1rem;
   padding-bottom: 1.75rem;
   color: ${Colors.Brand.Text};

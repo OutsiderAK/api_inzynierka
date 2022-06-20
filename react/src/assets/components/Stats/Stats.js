@@ -3,7 +3,7 @@ import Icon from "../../images/icons/04.svg";
 import H2 from "../styled/H2.styled";
 import H3 from "../styled/H3.styled";
 import StatItem from "./StatItem";
-import People from "../../images/hm2.svg";
+import People from "../../images/hm2.png";
 import Img from "../styled/Img.styled";
 import S2 from "../styled/S2.styled";
 import { Colors, TextStyles, Shadows } from "../../Theme";

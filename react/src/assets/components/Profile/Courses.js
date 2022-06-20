@@ -83,7 +83,7 @@ const Courses = () => {
 							{el.description}
 						</TextWrapper>
 						
-						<Link to="/quiz"><CoursesButton>Ucz się</CoursesButton></Link>
+						<Link to="/fiszki"><CoursesButton>Ucz się</CoursesButton></Link>
 					</ImageWrapper>
 				))}
 			</ReviewSlider>

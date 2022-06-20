@@ -60,7 +60,7 @@ export default function Header() {
         <Link to="createcategory">
           <NavItem>Edukacja</NavItem>
         </Link>
-        <Link to="createcategory">
+        <Link to="#">
           <NavItem>Kategorie</NavItem>
         </Link>
           <Navbar1 />
