@@ -65,7 +65,7 @@ export default class Navbar1 extends React.Component {
         >
           {toggleShow => (
             <Menu>
-              <Link to="createcategory">
+              <Link to="login">
                 <MenuItem onClick={() => this.handleClick(toggleShow)}>
                   Fiszka
                 </MenuItem>

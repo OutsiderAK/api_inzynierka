@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 const FormSection = styled.div`
 
-  padding: 8rem 30rem;
+  padding: 6rem 30rem;
 
 `;
 const Wrapper = styled.div`
@@ -35,7 +35,7 @@ const AppEl = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 70vh;
+  height: 60vh;
   width: 30vw;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -56,13 +56,21 @@ const InputContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 20%;
+  height: 40%;
   width: 100%;
   text-color: ${Colors.Brand.Text};
 `;
 
 const ButtonContainer = styled.div`
   margin: 3rem 0 2rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ButtonContainer2 = styled.div`
+  margin: em 0 2rem 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -115,7 +123,7 @@ function Form(){
       console.log(res.data)
         dispatch(authSlice.actions.setAccount(res.data.user));
         setLoading(false);
-        history.push("/home");
+        history.push("/profile");
       })
       .catch((err) => {
         console.log(err.res)
@@ -177,12 +185,17 @@ function Form(){
           </ButtonContainer>
          
         </form>
-        <div className='zarejestruj'>
-            <p>Nie posiadasz konta? <Link to="register">
-							  <button>Zarejestruj się</button>
-						  </Link></p>
-        </div>
+        
       </AppEl>
+      <div className='zarejestruj'>
+            <p>Nie posiadasz konta? </p><Link to="register">
+            <ButtonContainer2>
+            <Button type="submit" disabled={loading}>
+              Zarejestruj się
+            </Button>
+          </ButtonContainer2>
+						  </Link>
+        </div>
   </FormSection>
   </Wrapper>
   );

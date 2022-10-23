@@ -8,7 +8,7 @@ import { Colors, TextStyles } from "../Theme";
 import "./anw.css";
 
 const ButtonContainer = styled.div`
-  margin: 3rem 0 2rem 0;
+  margin: 3rem 0 0rem 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@ const ButtonContainer = styled.div`
 
 
 const WelcomeText = styled(H3)`
-  margin: 1rem 9 4rem 8s;
+  margin: 1rem 0 4rem 8s;
   padding: 3%;
   color: ${Colors.Brand.Text};
 `;
@@ -29,7 +29,7 @@ const AppEl = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 60vh;
+  height: 56vh;
   width: 30vw;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -50,7 +50,7 @@ class Popup extends React.Component {
         this.state = {
             time: 'start',
             title: 'Quiz',
-            text: 'Spróbuj swoich sił<p> rozwiązując quiz.',
+            text: 'Spróbuj swoich sił rozwiązując quiz.',
             buttonText: 'Rozpocznij' 
         };
         

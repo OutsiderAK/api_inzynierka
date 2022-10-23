@@ -19,6 +19,8 @@ import Fiszki from "./assets/Pages/Fiszki";
 import { Fiszka } from "./assets/components/fiszki/Fiszka";
 import {NotFound} from "./assets/Pages/NotFound";
 import Home1 from "./assets/Pages/Home1";
+import Create from './assets/Pages/Create';
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/home" component={Home1} />
 				      <Route path="/login" component={Login} />
+              <Route path="/create" component={Create} />
               <Route path="/quiz" component={Quiz} />
               <Route path="/register" component={Register} />
               <Route path="/fiszki" component={Fiszki} />

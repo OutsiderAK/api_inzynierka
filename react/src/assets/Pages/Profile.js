@@ -76,7 +76,7 @@ export const Profile = () => {
 							</Subtitle>
 							<br />
 							<RankButton>
-							  Zobać ranking
+							  Zobacz ranking
 							</RankButton>
 						</TextWrapper>
 					</ContentColumn>

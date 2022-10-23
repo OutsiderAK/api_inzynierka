@@ -29,6 +29,8 @@ const authSlice = createSlice({
 
     setFiszka(state, action: FiszkaResponse) {
       state.account = action.payload;
+      state.refreshToken = null;
+      state.token = null;
     },
 
     logout:(state) => {
