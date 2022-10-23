@@ -5,7 +5,7 @@ from .models import Fishka, Article
 from rest_framework import status
 from .serializers import FishkaSerializer, ArticleSerializer
 from rest_framework import generics
-
+from django.http import Http404
 from rest_framework import viewsets, filters
 
 
@@ -26,13 +26,25 @@ class FishkaApi(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class SingleFishkaApi(generics.ListAPIView):
+
+class SingleFishkaApi(APIView):
     serializer_class = FishkaSerializer
 
-    def get_queryset(self):
-        id = self.kwargs['id']
-        return Fishka.objects.filter(id=id)
+    def get_object(self, pk):
+        try:
+            return Fishka.objects.get(pk=pk)
+        except Fishka.DoesNotExist:
+            raise Http404
 
+    def get(self, request, pk, format=None):
+        event = self.get_object(pk)
+        serializer = FishkaSerializer(event)
+        return Response(serializer.data)
+
+    def delete(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ArticleApi(APIView):
 
