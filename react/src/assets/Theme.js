@@ -6,6 +6,7 @@ export const Colors = {
     Button:'#6B10B1',
     Text:'#010030',
     White:'#FFFFFF',
+    Rank: '#BB67FF',
   },
 };
 

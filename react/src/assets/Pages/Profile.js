@@ -22,7 +22,7 @@ import {RootState} from "../store";
 import axios from "axios";
 import useSWR from 'swr';
 import {UserResponse} from "../types/UserTypes";
-
+import { Link } from 'react-router-dom';
 
 
 const ButtonContainer = styled.div`
@@ -75,9 +75,11 @@ export const Profile = () => {
 							  Rozwiązuj quizy, zdobywaj punkty i walcz o pierwsze miejsce w rankingu
 							</Subtitle>
 							<br />
+							<Link to="ranking">
 							<RankButton>
 							  Zobacz ranking
 							</RankButton>
+							</Link>
 						</TextWrapper>
 					</ContentColumn>
 					<ContentColumn>

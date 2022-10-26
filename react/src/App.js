@@ -20,6 +20,7 @@ import { Fiszka } from "./assets/components/fiszki/Fiszka";
 import {NotFound} from "./assets/Pages/NotFound";
 import Home1 from "./assets/Pages/Home1";
 import Create from './assets/Pages/Create';
+import Ranking from "./assets/Pages/Ranking";
 
 
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/profile" component={Profile} />
 				      <Route path="/article/:slug" component={Details} />
               <Route path="/card/:id" component={Fiszka} />
+              <Route path="/ranking" component={Ranking} />
               <Route component={NotFound} />
             </Switch>
         </Router>
