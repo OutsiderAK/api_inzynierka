@@ -40,7 +40,6 @@ const Image = styled(Img)`
 export default function Hero1() {
     return (
       <HeroEl>
-        <HeaderUser />
       </HeroEl>
     );
   }

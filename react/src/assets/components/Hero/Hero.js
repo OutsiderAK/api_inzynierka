@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Header from "../Header/Header";
 import Button from "../styled/Button.styled";
 import H1 from "../styled/H1.styled";
 import H3 from "../styled/H3.styled";
@@ -43,7 +42,6 @@ const Image = styled(Img)`
 export default function Hero() {
     return (
       <HeroEl>
-        <Header />
         <Content>
           <span>
             <Title>Fiszki z <br></br>języka migowego</Title>

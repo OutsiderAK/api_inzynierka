@@ -21,20 +21,20 @@ import {NotFound} from "./assets/Pages/NotFound";
 import Home1 from "./assets/Pages/Home1";
 import Create from './assets/Pages/Create';
 import Ranking from "./assets/Pages/Ranking";
-
+import Navbar from "./assets/components/Navbar";
 
 
 
 function App() {
-
 
   return (
 	<Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
         <Router>
           <GlobalStyle />
+          <Navbar />
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={Home1} />
               <Route exact path="/home" component={Home1} />
 				      <Route path="/login" component={Login} />
               <Route path="/create" component={Create} />
@@ -42,7 +42,7 @@ function App() {
               <Route path="/register" component={Register} />
               <Route path="/fiszki" component={Fiszki} />
 				      <Route path="/createCard" component={CreateCard} />
-				      <PrivateRoute path="/createCategory" component={CreateCategory} />
+				      <Route path="/createCategory" component={CreateCategory} />
 				      <Route path="/education" component={Education} />
               <Route path="/profile" component={Profile} />
 				      <Route path="/article/:slug" component={Details} />

@@ -50,8 +50,8 @@ const AvatartImage = styled.img`
   border: 2px solid ${Colors.Brand.Button};
   `;
 
-export default function HeaderUser() {
-
+export default function HeaderUser( ) {
+  const user = true;
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -73,7 +73,8 @@ export default function HeaderUser() {
           <Navbar1 />
         </NavBar>
       </LeftPart>
-      <RightPart>
+      {user ? (
+        <RightPart>
         <Link to="/home">
           <Logo>FJM</Logo>
         </Link>
@@ -81,7 +82,19 @@ export default function HeaderUser() {
           <NavbarUser />		
           <Button onClick={handleLogout}>Wyloguj się</Button>	
         </NavBar>
-      </RightPart>
+        </RightPart>
+        ) : (
+        <RightPart>
+        <NavBar>
+          <NavItem href="/login">Zaloguj się</NavItem>
+          
+						<Link to="register">
+							<Button>Zarejestruj się</Button>
+						</Link>
+					
+        </NavBar>
+        </RightPart>
+        )}
     </HeaderEl>
   );
 }
