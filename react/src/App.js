@@ -22,7 +22,7 @@ import Home1 from "./assets/Pages/Home1";
 import Create from './assets/Pages/Create';
 import Ranking from "./assets/Pages/Ranking";
 import Navbar from "./assets/components/Navbar";
-
+import FindUser from "./assets/Pages/FindUser";
 
 
 function App() {
@@ -48,6 +48,7 @@ function App() {
 				      <Route path="/article/:slug" component={Details} />
               <Route path="/card/:id" component={Fiszka} />
               <Route path="/ranking" component={Ranking} />
+              <Route path="/findUser" component={FindUser} />
               <Route component={NotFound} />
             </Switch>
         </Router>

@@ -68,6 +68,11 @@ export default class Navbar1 extends React.Component {
                   Profil
                 </MenuItem>
               </Link>
+              <Link to="findUser">
+                <MenuItem onClick={() => this.handleClick(toggleShow)}>
+                  Dodaj znajomego
+                </MenuItem>
+              </Link>
             </Menu>
           )}
         </Dropdown>
