@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.template.defaultfilters import slugify
 
+
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -56,6 +57,8 @@ class CustomUser(AbstractUser):
 class Fishka(models.Model):
     text = models.CharField(max_length=128)
     reverse = models.CharField(max_length=1024)
+    category = models.CharField(max_length=64, null=True)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 
 class Article(models.Model):

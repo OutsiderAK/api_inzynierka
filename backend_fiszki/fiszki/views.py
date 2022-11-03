@@ -26,7 +26,6 @@ class FishkaApi(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class SingleFishkaApi(APIView):
     serializer_class = FishkaSerializer
 
@@ -45,6 +44,7 @@ class SingleFishkaApi(APIView):
         snippet = self.get_object(pk)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ArticleApi(APIView):
 
