@@ -23,6 +23,7 @@ import Create from './assets/Pages/Create';
 import Ranking from "./assets/Pages/Ranking";
 import Navbar from "./assets/components/Navbar";
 
+import {Delete}from './assets/Pages/Delete';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Route exact path="/home" component={Home1} />
 				      <Route path="/login" component={Login} />
               <Route path="/create" component={Create} />
+              <Route path="/delete/:id" component={Delete} />
               <Route path="/quiz" component={Quiz} />
               <Route path="/register" component={Register} />
               <Route path="/fiszki" component={Fiszki} />
