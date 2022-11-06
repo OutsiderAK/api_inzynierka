@@ -26,22 +26,31 @@ class FishkaApi(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+### STARA DZIAŁAJĄCA WERSJA ###
+# class SingleFishkaApi(generics.ListAPIView):
+#     serializer_class = FishkaSerializer
+#
+#     def get_queryset(self):
+#         id = self.kwargs['id']
+#         return Fishka.objects.filter(id=id)
+
+### NOWA DO POPRAWY ###
 class SingleFishkaApi(APIView):
     serializer_class = FishkaSerializer
 
-    def get_object(self, pk):
+    def get_object(self, id):
         try:
-            return Fishka.objects.get(pk=pk)
+            return Fishka.objects.filter(id=id)
         except Fishka.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, format=None):
-        event = self.get_object(pk)
-        serializer = FishkaSerializer(event)
+    def get(self, request, id, format=None):
+        event = self.get_object(id)
+        serializer = FishkaSerializer(event, many=True)
         return Response(serializer.data)
 
-    def delete(self, request, pk, format=None):
-        snippet = self.get_object(pk)
+    def delete(self, request, id, format=None):
+        snippet = self.get_object(id)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

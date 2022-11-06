@@ -24,3 +24,10 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = ['title', 'img', 'section', 'author', 'slug']
         read_only_field = ['slug']
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    # answer = serializers.CharField(max_length=64, read_only=True)
+    class Meta:
+        model = Question
+        fields = ['question', 'op1', 'op2', 'op3', 'op4', 'answer']
