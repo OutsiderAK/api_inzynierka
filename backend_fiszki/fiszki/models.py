@@ -44,7 +44,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(db_index=True, unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
+    quiz_points = models.IntegerField(default=0)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -73,6 +73,14 @@ class Article(models.Model):
         super(Article, self).save(*args, **kwargs)
 
 
+class Quiz(models.Model):
+    name = models.CharField(max_length=64)
+    category = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.name
+
+
 class Question(models.Model):
     question = models.CharField(max_length=1024)
     op1 = models.CharField(max_length=64)
@@ -80,6 +88,7 @@ class Question(models.Model):
     op3 = models.CharField(max_length=64)
     op4 = models.CharField(max_length=64)
     answer = models.CharField(max_length=64)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questionFK')
 
     def __str__(self):
         return self.question

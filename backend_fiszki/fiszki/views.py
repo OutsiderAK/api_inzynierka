@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Fishka, Article
+from .models import Fishka, Article, Question, Quiz
 from rest_framework import status
-from .serializers import FishkaSerializer, ArticleSerializer
+from .serializers import FishkaSerializer, ArticleSerializer, QuestionSerializer, QuizSerializer
 from rest_framework import generics
 from django.http import Http404
 from rest_framework import viewsets, filters
@@ -76,3 +76,33 @@ class SingleArticleApi(generics.ListAPIView):
     def get_queryset(self):
         slug = self.kwargs['string']
         return Article.objects.filter(slug=slug)
+
+
+class QuestionApi(APIView):
+
+    def get(self, request):
+        data = Question.objects.all()
+        serializer = QuestionSerializer(data, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = QuestionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class QuizApi(APIView):
+
+    def get(self, request):
+        data = Quiz.objects.all()
+        serializer = QuizSerializer(data, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = QuizSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

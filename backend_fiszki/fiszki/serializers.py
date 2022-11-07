@@ -27,7 +27,14 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    # answer = serializers.CharField(max_length=64, read_only=True)
     class Meta:
         model = Question
-        fields = ['question', 'op1', 'op2', 'op3', 'op4', 'answer']
+        fields = ['id', 'question', 'op1', 'op2', 'op3', 'op4', 'answer', 'quiz']
+
+
+class QuizSerializer(serializers.ModelSerializer):
+    questionFK = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Quiz
+        fields = ['id', 'name', 'category', 'questionFK']
