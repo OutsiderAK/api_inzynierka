@@ -26,15 +26,6 @@ class FishkaApi(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-### STARA DZIAŁAJĄCA WERSJA ###
-# class SingleFishkaApi(generics.ListAPIView):
-#     serializer_class = FishkaSerializer
-#
-#     def get_queryset(self):
-#         id = self.kwargs['id']
-#         return Fishka.objects.filter(id=id)
-
-### NOWA DO POPRAWY ###
 class SingleFishkaApi(APIView):
     serializer_class = FishkaSerializer
 
