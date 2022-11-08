@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
+
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password=None, **kwargs):

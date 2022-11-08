@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Fishka, Article, Question, Quiz
+from .models import Fishka, Article, Question, Quiz, CustomUser
 from rest_framework import status
 from .serializers import FishkaSerializer, ArticleSerializer, QuestionSerializer, QuizSerializer
 from rest_framework import generics
@@ -76,6 +76,20 @@ class QuestionApi(APIView):
         serializer = QuestionSerializer(data, many=True)
         return Response(serializer.data)
 
+# PUT do weryfikowaania odpowiedzi, user_id musimy dostawać w pucie od frontu
+    def put(self, request):
+        id = request.data['id']
+        answer = request.data['answer']
+        user_id = request.data['user_id']
+        question = Question.objects.get(id=id)
+        user = CustomUser.objects.get(id=user_id)
+        if question.answer == answer:
+            user.quiz_points += 1
+            user.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+
+# POST tylko do tworzenia nowycch pytań
     def post(self, request):
         serializer = QuestionSerializer(data=request.data)
         if serializer.is_valid():
