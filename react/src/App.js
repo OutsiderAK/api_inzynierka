@@ -23,10 +23,13 @@ import Create from './assets/Pages/Create';
 import Ranking from "./assets/Pages/Ranking";
 import Navbar from "./assets/components/Navbar";
 import FindUser from "./assets/Pages/FindUser";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 
 
 function App() {
-
+  const { user } = useContext(Context);
+  
   return (
 	<Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
