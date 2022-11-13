@@ -67,7 +67,7 @@ export default function HeaderUser( ) {
         <Link to="education">
           <NavItem>Edukacja</NavItem>
         </Link>
-        <Link to="#" >
+        <Link to="categories" >
           <NavItem>Kategorie</NavItem>
         </Link>
           <Navbar1 />

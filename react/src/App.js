@@ -25,7 +25,8 @@ import Navbar from "./assets/components/Navbar";
 import FindUser from "./assets/Pages/FindUser";
 import { useContext } from "react";
 import { Context } from "./context/Context";
-import {Delete}from './assets/Pages/Delete';
+import {Delete} from './assets/Pages/Delete';
+import Categories from "./assets/Pages/Categories"
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
               <Route path="/card/:id" component={Fiszka} />
               <Route path="/ranking" component={Ranking} />
               <Route path="/findUser" component={FindUser} />
+              <Route path="/categories" component={Categories} />
               <Route component={NotFound} />
             </Switch>
         </Router>
