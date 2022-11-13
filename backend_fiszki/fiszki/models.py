@@ -93,3 +93,9 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=64)
+    img = models.CharField(max_length=256)
+    description = models.CharField(max_length=512)
