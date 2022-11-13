@@ -6,6 +6,7 @@ import Hero1 from "../components/Hero/Hero1";
 export const Wrapper = styled.div`
     background-size: cover;
     display: flex;
+    flex-flow:column;
     justify-content: center;
     align-items: center;
     padding: 0;

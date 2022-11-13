@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class FishkaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fishka
-        fields = ['id', 'text', 'reverse']
+        fields = ['id', 'text', 'reverse', 'category', 'author']
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -24,3 +24,19 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = ['title', 'img', 'section', 'author', 'slug']
         read_only_field = ['slug']
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answer = serializers.CharField(max_length=64, read_only=True)
+
+    class Meta:
+        model = Question
+        fields = ['id', 'question', 'op1', 'op2', 'op3', 'op4', 'answer', 'quiz']
+
+
+class QuizSerializer(serializers.ModelSerializer):
+    questionFK = serializers.StringRelatedField(many=True, required=False)
+
+    class Meta:
+        model = Quiz
+        fields = ['id', 'name', 'category', 'questionFK']

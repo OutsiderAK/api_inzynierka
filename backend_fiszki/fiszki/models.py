@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.template.defaultfilters import slugify
 
+
 # Create your models here.
+
 
 class UserManager(BaseUserManager):
 
@@ -43,7 +45,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(db_index=True, unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
+    quiz_points = models.IntegerField(default=0)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -56,6 +58,8 @@ class CustomUser(AbstractUser):
 class Fishka(models.Model):
     text = models.CharField(max_length=128)
     reverse = models.CharField(max_length=1024)
+    category = models.CharField(max_length=64, null=True)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
 
 class Article(models.Model):
@@ -68,3 +72,24 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
+
+
+class Quiz(models.Model):
+    name = models.CharField(max_length=64)
+    category = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.name
+
+
+class Question(models.Model):
+    question = models.CharField(max_length=1024)
+    op1 = models.CharField(max_length=64)
+    op2 = models.CharField(max_length=64)
+    op3 = models.CharField(max_length=64)
+    op4 = models.CharField(max_length=64)
+    answer = models.CharField(max_length=64)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questionFK')
+
+    def __str__(self):
+        return self.question

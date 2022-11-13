@@ -25,6 +25,7 @@ import Navbar from "./assets/components/Navbar";
 import FindUser from "./assets/Pages/FindUser";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import {Delete}from './assets/Pages/Delete';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
               <Route exact path="/home" component={Home1} />
 				      <Route path="/login" component={Login} />
               <Route path="/create" component={Create} />
+              <Route path="/delete/:id" component={Delete} />
               <Route path="/quiz" component={Quiz} />
               <Route path="/register" component={Register} />
               <Route path="/fiszki" component={Fiszki} />

@@ -40,7 +40,7 @@ const AppEl = styled.div`
 `;
 
 const WelcomeText = styled(H3)`
-  margin: 4rem 0 4rem 0;
+  margin: 0rem 0 4rem 0;
   color: ${Colors.Brand.Text};
 `;
 

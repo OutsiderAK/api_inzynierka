@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Fishka, Article
+from .models import Fishka, Article, Question, Quiz, CustomUser
 from rest_framework import status
-from .serializers import FishkaSerializer, ArticleSerializer
+from .serializers import FishkaSerializer, ArticleSerializer, QuestionSerializer, QuizSerializer
 from rest_framework import generics
 from django.http import Http404
 from rest_framework import viewsets, filters
@@ -26,25 +26,25 @@ class FishkaApi(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class SingleFishkaApi(APIView):
     serializer_class = FishkaSerializer
 
-    def get_object(self, pk):
+    def get_object(self, id):
         try:
-            return Fishka.objects.get(pk=pk)
+            return Fishka.objects.filter(id=id)
         except Fishka.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, format=None):
-        event = self.get_object(pk)
-        serializer = FishkaSerializer(event)
+    def get(self, request, id, format=None):
+        event = self.get_object(id)
+        serializer = FishkaSerializer(event, many=True)
         return Response(serializer.data)
 
-    def delete(self, request, pk, format=None):
-        snippet = self.get_object(pk)
+    def delete(self, request, id, format=None):
+        snippet = self.get_object(id)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ArticleApi(APIView):
 
@@ -67,3 +67,47 @@ class SingleArticleApi(generics.ListAPIView):
     def get_queryset(self):
         slug = self.kwargs['string']
         return Article.objects.filter(slug=slug)
+
+
+class QuestionApi(APIView):
+
+    def get(self, request):
+        data = Question.objects.all()
+        serializer = QuestionSerializer(data, many=True)
+        return Response(serializer.data)
+
+# PUT do weryfikowaania odpowiedzi, user_id musimy dostawać w pucie od frontu
+    def put(self, request):
+        id = request.data['id']
+        answer = request.data['answer']
+        user_id = request.data['user_id']
+        question = Question.objects.get(id=id)
+        user = CustomUser.objects.get(id=user_id)
+        if question.answer == answer:
+            user.quiz_points += 1
+            user.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+
+# POST tylko do tworzenia nowycch pytań
+    def post(self, request):
+        serializer = QuestionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class QuizApi(APIView):
+
+    def get(self, request):
+        data = Quiz.objects.all()
+        serializer = QuizSerializer(data, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = QuizSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

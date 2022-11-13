@@ -56,6 +56,7 @@ function Fiszki() {
                      );
                 })}
               </List>
+             
               <Button onClick={() => push(`/quiz`)}>Sprawdź siebie</Button>
               </Container>
               </Wrapper>
