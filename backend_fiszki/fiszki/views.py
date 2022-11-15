@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Fishka, Article, Question, Quiz, CustomUser
+from .models import Fishka, Article, Question, Quiz, CustomUser, Category
 from rest_framework import status
-from .serializers import FishkaSerializer, ArticleSerializer, QuestionSerializer, QuizSerializer
+from .serializers import FishkaSerializer, ArticleSerializer, QuestionSerializer, QuizSerializer, CategorySerializer
 from rest_framework import generics
 from django.http import Http404
 from rest_framework import viewsets, filters
@@ -76,7 +76,7 @@ class QuestionApi(APIView):
         serializer = QuestionSerializer(data, many=True)
         return Response(serializer.data)
 
-# PUT do weryfikowaania odpowiedzi, user_id musimy dostawać w pucie od frontu
+    # PUT do weryfikowaania odpowiedzi, user_id musimy dostawać w pucie od frontu
     def put(self, request):
         id = request.data['id']
         answer = request.data['answer']
@@ -89,7 +89,7 @@ class QuestionApi(APIView):
             return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
-# POST tylko do tworzenia nowycch pytań
+    # POST tylko do tworzenia nowycch pytań
     def post(self, request):
         serializer = QuestionSerializer(data=request.data)
         if serializer.is_valid():
@@ -107,6 +107,21 @@ class QuizApi(APIView):
 
     def post(self, request):
         serializer = QuizSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CategoryAPI(APIView):
+
+    def get(self, request):
+        data = Category.objects.all()
+        serializer = CategorySerializer(data, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
