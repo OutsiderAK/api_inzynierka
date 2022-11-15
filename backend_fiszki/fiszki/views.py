@@ -14,7 +14,7 @@ from rest_framework import viewsets, filters
 class UserAPI(APIView):
 
     def get(self, request):
-        data = CustomUser.objects.all()
+        data = CustomUser.objects.all().order_by("-quiz_points")
         serializer = UserSerializer(data, many=True)
         return Response(serializer.data)
 
