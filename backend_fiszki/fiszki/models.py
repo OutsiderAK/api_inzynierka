@@ -77,6 +77,11 @@ class Article(models.Model):
 class Quiz(models.Model):
     name = models.CharField(max_length=64)
     category = models.CharField(max_length=64)
+    slug = models.SlugField(default='/')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Quiz, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
