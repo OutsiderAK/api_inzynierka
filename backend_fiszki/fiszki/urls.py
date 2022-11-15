@@ -7,6 +7,7 @@ urlpatterns = [
     # path('', ReactView.as_view(), name="something"),
     path('api/', include(('fiszki.routers', 'fiszki'))),
     path('api/category/', views.CategoryAPI.as_view()),
+    path('api/au/', views.UserAPI.as_view()),
     # fiszki
     path('api/fiszki/', views.FishkaApi.as_view()),
     path('api/fiszki/<int:id>', views.SingleFishkaApi.as_view()),

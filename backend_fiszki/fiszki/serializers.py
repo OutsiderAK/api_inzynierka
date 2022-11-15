@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'is_active']
+        fields = ['id', 'username', 'email', 'is_active', 'quiz_points']
         read_only_field = ['is_active']
 
 

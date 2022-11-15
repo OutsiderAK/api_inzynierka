@@ -3,13 +3,21 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Fishka, Article, Question, Quiz, CustomUser, Category
 from rest_framework import status
-from .serializers import FishkaSerializer, ArticleSerializer, QuestionSerializer, QuizSerializer, CategorySerializer
+from .serializers import *
 from rest_framework import generics
 from django.http import Http404
 from rest_framework import viewsets, filters
 
 
 # Create your views here.
+
+class UserAPI(APIView):
+
+    def get(self, request):
+        data = CustomUser.objects.all()
+        serializer = UserSerializer(data, many=True)
+        return Response(serializer.data)
+
 
 class FishkaApi(APIView):
 
