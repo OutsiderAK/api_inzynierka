@@ -27,7 +27,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    answer = serializers.CharField(max_length=64, read_only=True)
+    answer = serializers.CharField(max_length=64)
 
     class Meta:
         model = Question
