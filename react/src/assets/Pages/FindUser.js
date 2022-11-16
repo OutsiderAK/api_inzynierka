@@ -9,11 +9,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 `;
 
 const Search = styled.input`
-  margin-left: 100px;
+ 
   background: none;
+  text-align:center;
   width: 300px;
   padding: 10px;
   font-size: 16px;
@@ -44,7 +46,7 @@ export default function FindUser() {
   
     useEffect(() => {
       const fetchData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/auth/login/?q=${query}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/au/?q=${query}`);
         setData(res.data);
       };
       if (query.length === 0 || query.length > 1) fetchData();
