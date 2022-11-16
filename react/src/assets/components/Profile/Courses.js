@@ -14,6 +14,7 @@ import H3 from '../styled/H3.styled';
 import Button from '../styled/Button.styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 const Heading = styled(H1)`
@@ -57,6 +58,7 @@ const CoursesButton = styled(Button)`
 
 const Courses = () => {
 	const [sliderRef, setSliderRef] = useState(null);
+	const categories = useSelector((state) => state.privatecategories);
 
 	return (
 		<Section  inverse>
@@ -73,9 +75,9 @@ const Courses = () => {
 			</Row>
 
 			<ReviewSlider {...sliderSettings} ref={setSliderRef}>
-				{data.map((el, index) => (
+				{categories.category.map((el, index) => (
 					<ImageWrapper key={index}>
-						<CarouselImage src={el.image} />
+						<CarouselImage src={el.img} />
 						<TextWrapper size="1.1rem" margin="0.4rem 0 0" weight="bold">
 							{el.title}
 						</TextWrapper>

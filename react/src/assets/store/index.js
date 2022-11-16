@@ -12,9 +12,11 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authSlice from "./Auth";
+import categoriesReducer from "../Categories/CategoriesRedux";
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
+  privatecategories: categoriesReducer,
 });
 
 const persistedReducer = persistReducer(

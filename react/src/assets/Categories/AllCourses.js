@@ -16,6 +16,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {addCategory} from "./CategoriesRedux";
+import {  useEffect } from 'react';
+import axios from 'axios';
 
 
 const Heading = styled(H1)`
@@ -59,14 +61,15 @@ const CoursesButton = styled(Button)`
 
 export  const AllCategories = () => {
 	const [sliderRef, setSliderRef] = useState(null);
+	const [categories, setCategories] = useState([]);
 	const dispatch = useDispatch();
-	const category = data;
-
-	const handleClick = () => {
-		dispatch(
-		  addCategory({ ...category })
-		);
-	  };
+	
+	useEffect(() => {
+      axios.get('http://127.0.0.1:8000/api/category/')
+        .then((response) => {
+        setCategories(response.data)
+      })
+    }, []);
 
 	return (
 		<Section  inverse>
@@ -83,16 +86,16 @@ export  const AllCategories = () => {
 			</Row>
 
 			<ReviewSlider {...sliderSettings} ref={setSliderRef}>
-				{data.map((el, index) => (
+				{categories.map((el, index) => (
 					<ImageWrapper key={index}>
-						<CarouselImage src={el.image} />
+						<CarouselImage src={el.img} />
 						<TextWrapper size="1.1rem" margin="0.4rem 0 0" weight="bold">
 							{el.title}
 						</TextWrapper>
 						<TextWrapper size="0.9rem" margin="0.7rem" color="#4f4f4f">
 							{el.description}
 						</TextWrapper>
-						<CoursesButton onClick={handleClick}>Dodaj</CoursesButton>
+						<CoursesButton onClick={() => dispatch(addCategory({...el}))}>Dodaj</CoursesButton>
 					</ImageWrapper>
 				))}
 			</ReviewSlider>
