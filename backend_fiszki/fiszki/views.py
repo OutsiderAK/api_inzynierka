@@ -19,6 +19,14 @@ class UserAPI(APIView):
         return Response(serializer.data)
 
 
+class UserSingleAPI(generics.ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        return CustomUser.objects.filter(id=id)
+
+
 class FishkaApi(APIView):
 
     def get(self, request):
