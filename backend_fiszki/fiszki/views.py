@@ -99,11 +99,15 @@ class QuestionApi(APIView):
         user_id = request.data['user_id']
         question = Question.objects.get(id=id)
         user = CustomUser.objects.get(id=user_id)
-        if question.answer == answer:
-            user.quiz_points += 1
-            user.save()
-            return Response(status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+        if question in user.solved_quests.all():
+            return Response("Za to zadanie nie można dostać więcej punktów")
+        else:
+            if question.answer == answer:
+                user.quiz_points += 1
+                user.solved_quests.add(question)
+                user.save()
+                return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
     # POST tylko do tworzenia nowycch pytań
     def post(self, request):

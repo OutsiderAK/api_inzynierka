@@ -40,12 +40,39 @@ class UserManager(BaseUserManager):
         return user
 
 
+class Quiz(models.Model):
+    name = models.CharField(max_length=64)
+    category = models.CharField(max_length=64)
+    slug = models.SlugField(default='/')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Quiz, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class Question(models.Model):
+    question = models.CharField(max_length=1024)
+    op1 = models.CharField(max_length=64)
+    op2 = models.CharField(max_length=64)
+    op3 = models.CharField(max_length=64)
+    op4 = models.CharField(max_length=64)
+    answer = models.CharField(max_length=64)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questionFK')
+
+    def __str__(self):
+        return self.question
+
+
 class CustomUser(AbstractUser):
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     quiz_points = models.IntegerField(default=0)
+    solved_quests = models.ManyToManyField(Question, null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -72,32 +99,6 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
-
-
-class Quiz(models.Model):
-    name = models.CharField(max_length=64)
-    category = models.CharField(max_length=64)
-    slug = models.SlugField(default='/')
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Quiz, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
-
-
-class Question(models.Model):
-    question = models.CharField(max_length=1024)
-    op1 = models.CharField(max_length=64)
-    op2 = models.CharField(max_length=64)
-    op3 = models.CharField(max_length=64)
-    op4 = models.CharField(max_length=64)
-    answer = models.CharField(max_length=64)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questionFK')
-
-    def __str__(self):
-        return self.question
 
 
 class Category(models.Model):
