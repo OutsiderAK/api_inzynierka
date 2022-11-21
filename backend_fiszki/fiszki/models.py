@@ -73,6 +73,7 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
     quiz_points = models.IntegerField(default=0)
     solved_quests = models.ManyToManyField(Question, null=True)
+    friends = models.ManyToManyField("self", blank=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -80,6 +81,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return f"{self.email}"
+
+
+class FriendRequest(models.Model):
+    from_user = models.ForeignKey(CustomUser, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(CustomUser, related_name='to_user', on_delete=models.CASCADE)
 
 
 class Fishka(models.Model):
