@@ -148,10 +148,22 @@ class CategoryAPI(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class FriendsAPI(APIView):
+class AddFriendAPI(APIView):
 
     def get(self, request):
-        pass
+        data = FriendRequest.objects.all()
+        serializer = FriendReqSerializer(data, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
-        pass
+        from_user_id = request.data['from_user_id']
+        to_user_id = request.data["to_user_id"]
+        if from_user_id == to_user_id:
+            return Response("You can't send request to yourself")
+        from_user = CustomUser.objects.get(id=from_user_id)
+        to_user = CustomUser.objects.get(id=to_user_id)
+        friend_request, created = FriendRequest.objects.get_or_create(from_user=from_user, to_user=to_user)
+        if created:
+            return Response("Friend request sent")
+        else:
+            return Response('Friend request was already sent')

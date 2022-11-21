@@ -46,3 +46,15 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['title', 'img', 'description']
+
+
+class FriendReqSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FriendRequest
+        fields = ['from_user', 'to_user']
+
+# class SendRequestSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UserSerializer
+#         fields = ['id', 'username', 'email', 'friends']
