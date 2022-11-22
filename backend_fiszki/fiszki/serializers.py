@@ -49,10 +49,12 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class FriendReqSerializer(serializers.ModelSerializer):
+    from_user = serializers.EmailField()
+    to_user = serializers.EmailField()
 
     class Meta:
         model = FriendRequest
-        fields = ['from_user', 'to_user']
+        fields = ['id', 'from_user', 'to_user']
 
 # class SendRequestSerializer(serializers.ModelSerializer):
 #     class Meta:

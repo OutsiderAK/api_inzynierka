@@ -167,3 +167,21 @@ class AddFriendAPI(APIView):
             return Response("Friend request sent")
         else:
             return Response('Friend request was already sent')
+
+class AcceptRequest(APIView):
+    def get(self, request):
+        data = FriendRequest.objects.all()
+        serializer = FriendReqSerializer(data, many=True)
+        return Response(serializer.data)
+    def post(self, request):
+        try:
+            friend_request = FriendRequest.objects.get(id=request.data['request_id'])
+            if friend_request.to_user_id == request.data['to_user_id']:
+                friend_request.to_user.friends.add(friend_request.from_user)
+                friend_request.from_user.friends.add(friend_request.to_user)
+                friend_request.delete()
+                return Response('Friend request accepted')
+            else:
+                return Response('Something went wrong')
+        except:
+            return Response('Friend request does not exist')

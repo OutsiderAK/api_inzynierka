@@ -20,5 +20,5 @@ urlpatterns = [
     path('api/quest/', views.QuestionApi.as_view()),
     # friends
     path('api/send_request', views.AddFriendAPI.as_view()),
-    # path('api/friend_requests/', views.FriendsRequestAPI.as_view()),
+    path('api/accept_request/', views.AcceptRequest.as_view()),
 ]
