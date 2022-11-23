@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'email', 'is_active', 'quiz_points']
-        read_only_field = ['is_active']
+
 
 
 class FishkaSerializer(serializers.ModelSerializer):
@@ -23,7 +23,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ['title', 'img', 'section', 'author', 'slug']
-        read_only_field = ['slug']
+        read_only_fields = ['slug']
 
 
 class QuestionSerializer(serializers.ModelSerializer):

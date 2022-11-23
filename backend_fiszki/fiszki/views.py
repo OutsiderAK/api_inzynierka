@@ -28,6 +28,7 @@ class UserSingleAPI(generics.ListAPIView):
 
 
 class FishkaApi(APIView):
+    serializer_class = FishkaSerializer
 
     def get(self, request):
         data = Fishka.objects.all()
@@ -40,6 +41,9 @@ class FishkaApi(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_serializer(self):
+        return self.serializer_class()
 
 
 class SingleFishkaApi(APIView):
@@ -63,6 +67,7 @@ class SingleFishkaApi(APIView):
 
 
 class ArticleApi(APIView):
+    serializer_class = ArticleSerializer
 
     def get(self, request):
         data = Article.objects.all()
@@ -76,9 +81,11 @@ class ArticleApi(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get_serializer(self):
+        return self.serializer_class()
+
 
 class SingleArticleApi(generics.ListAPIView):
-    serializer_class = ArticleSerializer
 
     def get_queryset(self):
         slug = self.kwargs['string']
@@ -119,6 +126,7 @@ class QuestionApi(APIView):
 
 
 class QuizApi(APIView):
+    serializer_class = QuizSerializer
 
     def get(self, request):
         data = Quiz.objects.all()
@@ -132,8 +140,12 @@ class QuizApi(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get_serializer(self):
+        return self.serializer_class()
+
 
 class CategoryAPI(APIView):
+    serializer_class = CategorySerializer
 
     def get(self, request):
         data = Category.objects.all()
@@ -146,6 +158,10 @@ class CategoryAPI(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_serializer(self):
+        return self.serializer_class()
+
 
 # na AddFriendAPI wysyła się zaproszenia do znajomych, wysyłamy nasze id i id osoby zapraszanej do znajomych
 class AddFriendAPI(APIView):

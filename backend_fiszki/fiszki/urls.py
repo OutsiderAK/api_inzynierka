@@ -8,7 +8,7 @@ urlpatterns = [
     path('api/', include(('fiszki.routers', 'fiszki'))),
     path('api/category/', views.CategoryAPI.as_view()),
     path('api/au/', views.UserAPI.as_view()),
-    path('api/au/<int:id>', views.UserSingleAPI.as_view()),
+    path('api/au/<int:id>/', views.UserSingleAPI.as_view()),
     # fiszki
     path('api/fiszki/', views.FishkaApi.as_view()),
     path('api/fiszki/<int:id>', views.SingleFishkaApi.as_view()),
