@@ -147,7 +147,7 @@ class CategoryAPI(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+# na AddFriendAPI wysyła się zaproszenia do znajomych, wysyłamy nasze id i id osoby zapraszanej do znajomych
 class AddFriendAPI(APIView):
 
     def get(self, request):
@@ -168,11 +168,14 @@ class AddFriendAPI(APIView):
         else:
             return Response('Friend request was already sent')
 
+
+# na AcceptRequest wysyłamy id zaproszenia, id użytkownika który wysłał zaproszenie i który akceptuje zaproszenie
 class AcceptRequest(APIView):
     def get(self, request):
         data = FriendRequest.objects.all()
         serializer = FriendReqSerializer(data, many=True)
         return Response(serializer.data)
+
     def post(self, request):
         try:
             friend_request = FriendRequest.objects.get(id=request.data['request_id'])

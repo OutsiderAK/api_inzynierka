@@ -54,7 +54,7 @@ class FriendReqSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FriendRequest
-        fields = ['id', 'from_user', 'to_user']
+        fields = ['id', 'from_use', 'to_use']
 
 # class SendRequestSerializer(serializers.ModelSerializer):
 #     class Meta:
