@@ -162,6 +162,21 @@ class CategoryAPI(APIView):
     def get_serializer(self):
         return self.serializer_class()
 
+class SingleCategoryAPI(APIView):
+    serializer_class = CategorySerializer
+
+    def get_object(self, id):
+        try:
+            return Category.objects.filter(id=id)
+        except Category.DoesNotExist:
+            raise Http404
+
+    def get(self, request, id, format=None):
+        event = self.get_object(id)
+        serializer = CategorySerializer(event, many=True)
+        return Response(serializer.data)
+
+
 
 # na AddFriendAPI wysyła się zaproszenia do znajomych, wysyłamy nasze id i id osoby zapraszanej do znajomych
 class AddFriendAPI(APIView):
