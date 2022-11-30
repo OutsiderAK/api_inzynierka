@@ -70,7 +70,7 @@ export default class Navbar1 extends React.Component {
                   Fiszka
                 </MenuItem>
               </Link>
-              <Link to="">
+              <Link to="createCategory">
                 <MenuItem onClick={() => this.handleClick(toggleShow)}>
                    Kategoria
                 </MenuItem>

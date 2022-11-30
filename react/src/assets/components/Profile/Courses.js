@@ -75,7 +75,7 @@ const Courses = () => {
 			</Row>
 
 			<ReviewSlider {...sliderSettings} ref={setSliderRef}>
-				{categories.category.map((el, index) => (
+				{categories.categories.map((el, index) => (
 					<ImageWrapper key={index}>
 						<CarouselImage src={el.img} />
 						<TextWrapper size="1.1rem" margin="0.4rem 0 0" weight="bold">

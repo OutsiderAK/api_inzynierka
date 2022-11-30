@@ -17,7 +17,9 @@ import { Link } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {addCategory} from "./CategoriesRedux";
 import {  useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { CategoryCard } from '../education/CategoryCard';
 
 
 const Heading = styled(H1)`
@@ -62,6 +64,7 @@ const CoursesButton = styled(Button)`
 export  const AllCategories = () => {
 	const [sliderRef, setSliderRef] = useState(null);
 	const [categories, setCategories] = useState([]);
+	const { push } = useHistory();
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -95,7 +98,16 @@ export  const AllCategories = () => {
 						<TextWrapper size="0.9rem" margin="0.7rem" color="#4f4f4f">
 							{el.description}
 						</TextWrapper>
-						<CoursesButton onClick={() => dispatch(addCategory({...el}))}>Dodaj</CoursesButton>
+						{/* <CoursesButton onClick={() => dispatch(addCategory({...el}))}>Dodaj</CoursesButton> */}
+						
+						<Link to="/category/${el.id}`)">
+							<CoursesButton onClick={() => dispatch(addCategory({...el}))}>Dodaj</CoursesButton>
+						</Link>
+						{/* <CategoryCard
+                      key={el.id}
+                      onClick={() => push(`/category/${el.id}`)}
+                      
+                    /> */}
 					</ImageWrapper>
 				))}
 			</ReviewSlider>

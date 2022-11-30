@@ -89,7 +89,7 @@ class FriendRequest(models.Model):
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=64, unique=True)
     img = models.CharField(max_length=256)
     description = models.CharField(max_length=512)
 

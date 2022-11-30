@@ -27,7 +27,7 @@ const AppEl = styled.div`
   align-items: center;
   text-align:center;
   flex-direction: column;
-  height: 300px;
+  height: 350px;
   width: 1000px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -46,7 +46,7 @@ const WelcomeText = styled(H3)`
 
 const InputContainer = styled.div`
   row-gap: 1rem;
-  padding-top:4em;
+  padding-top:6em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -97,9 +97,9 @@ function Register(){
   const dispatch = useDispatch();
  
 
-  const handleRegister = (text,reverse ) => {
+  const handleRegister = (text,reverse,category ) => {
     axios
-      .post(`http://127.0.0.1:8000/api/fiszki/`, {text,reverse })
+      .post(`http://127.0.0.1:8000/api/fiszki/`, {text,reverse,category })
       .then((res) => {
         dispatch(
           authSlice.actions.setAuthTokens({
@@ -121,10 +121,11 @@ function Register(){
     initialValues: {
       text:"",
       reverse :"",
+      category:"",
     },
     onSubmit: (values) => {
       setLoading(true);
-      handleRegister(values.text,values.reverse);
+      handleRegister(values.text,values.reverse,values.category);
     },
   });
   
@@ -155,7 +156,14 @@ function Register(){
             <div>
               {formik.errors.reverse} 
               </div> : null}
-           
+              <StyledInput
+              type="category"
+              placeholder="Kategoria"
+              name="category"
+              value={formik.values.category}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
           </InputContainer>
           <div className="text-danger text-center my-2" hidden={false}>
             {message}
