@@ -26,7 +26,10 @@ import FindUser from "./assets/Pages/FindUser";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 import {Delete} from './assets/Pages/Delete';
-import Categories from "./assets/Pages/Categories"
+import Categories from "./assets/Pages/Categories";
+import  Test  from "./assets/Pages/Categories_";
+import { Category } from "./assets/Categories/Category";
+
 
 
 function App() {
@@ -56,6 +59,9 @@ function App() {
               <Route path="/ranking" component={Ranking} />
               <Route path="/findUser" component={FindUser} />
               <Route path="/categories" component={Categories} />
+              <Route path="/test" component={Test} />
+              <Route path="/category/:id" component={Category} />
+             
               <Route component={NotFound} />
             </Switch>
         </Router>

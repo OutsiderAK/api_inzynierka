@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AccountResponse } from "../types/AccountTypes";
 import { RegisterResponse } from "../types/RegisterTypes";
 import { FiszkaResponse } from "../types/FiszkaResponse";
+import { CategoryResponse } from "../types/CategoryResponse";
 
 const initialState = {
   token: null, 
@@ -28,6 +29,11 @@ const authSlice = createSlice({
     },
 
     setFiszka(state, action: FiszkaResponse) {
+      state.account = action.payload;
+      state.refreshToken = null;
+      state.token = null;
+    },
+    setCategory(state, action: CategoryResponse) {
       state.account = action.payload;
       state.refreshToken = null;
       state.token = null;
