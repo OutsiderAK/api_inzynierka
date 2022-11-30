@@ -88,10 +88,19 @@ class FriendRequest(models.Model):
     to_user = models.ForeignKey(CustomUser, related_name='to_user', on_delete=models.CASCADE)
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=64)
+    img = models.CharField(max_length=256)
+    description = models.CharField(max_length=512)
+
+    def __str__(self):
+        return f"{self.title}"
+
+
 class Fishka(models.Model):
     text = models.CharField(max_length=128)
     reverse = models.CharField(max_length=1024)
-    category = models.CharField(max_length=64, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
 
@@ -105,9 +114,3 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
-
-
-class Category(models.Model):
-    title = models.CharField(max_length=64)
-    img = models.CharField(max_length=256)
-    description = models.CharField(max_length=512)
