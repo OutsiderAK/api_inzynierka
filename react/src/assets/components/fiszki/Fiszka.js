@@ -23,26 +23,29 @@ export const Fiszka = () => {
   const { push } = useHistory();
   const [fiszka, setFiszka] = useState([]);
   const [flipped, setFlipped] = useState(false);
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
+  const [text, setText] = useState("");
+  const [reverse, setReverse] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
 
   useEffect(() => {
     axios.get(searchByCard(id)).then(({ data }) => setFiszka(data[0]));
-    console.log(fiszka.text);
-    setTitle(fiszka.text);
-    setUrl(fiszka.reverse);
+    setText(fiszka.text);
+    setReverse(fiszka.reverse);
+    console.log(text);
   }, [id]);
 
   
 
   const handleUpdate = async () => {
     try {
-      await axios.put(searchByCard(id), {
-        title,
-        url,
+      const res = await axios.post(searchByCard(id), {
+        id: fiszka.id,
+        text: text,
+        reverse: reverse,
+        category: fiszka.category
       });
+      console.log(res.data);
       setUpdateMode(false)
     } catch (err) {}
   };
@@ -57,12 +60,12 @@ export const Fiszka = () => {
               <InputContainer>
                 <StyledInput 
                 type="text"
-                value={title}
-                autoFocus onChange={(e) => setTitle(e.target.value)}/>
+                value={text}
+                autoFocus onChange={(e) => setText(e.target.value)}/>
                 <StyledInput
                 type="text"
-                value={url}
-                autoFocus onChange={(e) => setUrl(e.target.value)} />
+                value={reverse}
+                autoFocus onChange={(e) => setReverse(e.target.value)} />
               </InputContainer>
             </formik>
             <Button onClick={handleUpdate}>Edytuj</Button>
@@ -73,10 +76,10 @@ export const Fiszka = () => {
       <CardContainer>
         <CardInner className={flipped ? "flipped" : ""}>
           <CardFront onClick = {() => setFlipped(true)}>
-            <h2>{fiszka.text}</h2>
+            <h2>{text}</h2>
           </CardFront>
           <CardBack onClick = {() => setFlipped(false)}>
-            <img src={fiszka.reverse} alt={fiszka.text} />
+            <img src={reverse} alt={fiszka.text} />
           </CardBack>
         </CardInner>
       </CardContainer>
