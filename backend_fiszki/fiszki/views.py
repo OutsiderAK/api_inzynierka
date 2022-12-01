@@ -60,6 +60,15 @@ class SingleFishkaApi(APIView):
         serializer = FishkaSerializer(event, many=True)
         return Response(serializer.data)
 
+    def post(self, request, id, format=None):
+        fishka = Fishka.objects.get(id=id)
+        serializer = FishkaSerializer(fishka, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
     def delete(self, request, id, format=None):
         snippet = self.get_object(id)
         snippet.delete()
@@ -159,9 +168,9 @@ class CategoryAPI(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def get_serializer(self):
         return self.serializer_class()
+
 
 class SingleCategoryAPI(APIView):
     serializer_class = CategorySerializer
@@ -181,6 +190,7 @@ class SingleCategoryAPI(APIView):
         snippet = self.get_object(id)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 # na AddFriendAPI wysyła się zaproszenia do znajomych, wysyłamy nasze id i id osoby zapraszanej do znajomych
 class AddFriendAPI(APIView):
