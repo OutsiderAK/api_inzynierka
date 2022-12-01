@@ -31,7 +31,7 @@ export const Fiszka = () => {
   useEffect(() => {
     axios.get(searchByCard(id)).then(({ data }) => setFiszka(data[0]));
     setText(fiszka.text);
-    setReverse(fiszka.reverse);
+    //setReverse(fiszka.reverse);
     console.log(text);
   }, [id]);
 

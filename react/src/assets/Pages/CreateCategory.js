@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import authSlice from "../store/Auth"; 
 import { useFormik } from "formik";
 
-
 const FormSection = styled.div`
   padding: 4rem 30rem;
   display:flex;
