@@ -20,7 +20,7 @@ const FormSection = styled.div`
 
 `;
 
-const AppEl = styled.div`
+export const AppEl = styled.div`
   display: flex;
   justify-content: center;
   padding:2em;
@@ -28,7 +28,7 @@ const AppEl = styled.div`
   text-align:center;
   flex-direction: column;
   height: 350px;
-  width: 1000px;
+  width: 600px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(100rem);
@@ -44,7 +44,7 @@ const WelcomeText = styled(H3)`
   color: ${Colors.Brand.Text};
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   row-gap: 1rem;
   padding-top:6em;
   display: flex;
@@ -63,7 +63,7 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 2rem;
