@@ -1,0 +1,28 @@
+.radialBar {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .CircularProgressbar {
+    width: 4rem !important;
+    overflow: visible;
+  }
+  .CircularProgressbar-path {
+    stroke: #6B10B1 !important;
+    stroke-width: 12px !important;
+    filter: drop-shadow(2px 4px 6px #6B10B1);
+  }
+  .CircularProgressbar-trail {
+    display: none;
+  }
+  .CircularProgressbar-text {
+    fill: #6B10B1 !important;
+    font-weight: bold;
+  }
+  
+  .radialBar > span {
+    font-size: 17px;
+    font-weight: bold;
+  }

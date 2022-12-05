@@ -1,0 +1,119 @@
+
+
+#question {
+    
+    color: white;
+    padding: px;
+    text-align: center;
+}
+
+#question h4{
+    
+    color: #0b0e21;
+    display:inline-block;
+    padding: 30px 95px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#question p{
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#answers ul{
+    list-style-type: none;
+    padding: 2em;
+    margin-top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#answers li {
+    background-color: #fff;
+    border: 2px solid #6B10B1;
+    min-height: 70px;
+    width: 48%;
+    display: flex;
+    margin-bottom: 30px;
+    transition: color .3s ease, border-color .3s ease, transform .3s ease;
+    cursor: pointer;
+}
+
+#answers li span {
+    background-color: #6B10B1;
+    color: #fff;
+    font-size: 30px;
+    flex: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .3s ease;
+}
+
+#answers li p {
+    color: #0b0e21;
+    font-size: 16px;
+    font-weight: 600;
+    flex: calc(100% - 75px);
+    margin: auto 20px;
+    transition: color .3s ease;
+}
+
+#answers li:after{
+    display: block;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(100rem);
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(100rem);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  background-color: #ffffff;
+    overflow: hidden;
+}
+
+.popup h1 {
+    background-color: #0094da;
+    color: white;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 0;
+}
+
+.popup p {
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: 20px 10% 0;
+}
+
+.popup .fancy-btn{
+    margin: 20px auto;
+}
+
+.zarejestruj p {
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+    margin: 4em 0% 1em;
+}
